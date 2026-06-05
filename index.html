@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雙北月老參拜與姻緣科學指南</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        roseGold: '#B85C5C',
+                        templeRed: '#9F1239',
+                        warmGold: '#D97706',
+                        silkPink: '#FFF1F2',
+                        inkText: '#1C1917'
+                    },
+                    fontFamily: {
+                        sans: ['PingFang TC', 'Heiti TC', 'Microsoft JhengHei', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #FFF1F2;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #F43F5E;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-[#FCF9F7] text-inkText font-sans leading-relaxed">
+
+    <!-- 頂部視覺 Banner -->
+    <header class="relative overflow-hidden bg-gradient-to-b from-rose-950 via-rose-900 to-rose-800 text-white py-16 px-6 text-center shadow-md">
+        <!-- 裝飾背景絲線 -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <path d="M-100,100 C200,-50 300,300 800,50 C1200,-100 1300,400 1800,200" fill="none" stroke="#F43F5E" stroke-width="3"/>
+                <path d="M-50,200 C300,50 400,400 900,100 C1300,300 1400,100 1900,300" fill="none" stroke="#F43F5E" stroke-width="2" stroke-dasharray="10, 5"/>
+            </svg>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <span class="inline-block bg-warmGold/90 text-white font-semibold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-4 shadow">雙北地區 · 實操典籍</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">繫上紅線 · 尋覓正緣</h1>
+            <p class="text-rose-100 text-sm md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
+                結合傳統民俗學儀軌與現代心理學「認知澄清」機制，為你量身打造的宮廟實操地圖與擇偶自我檢視工具。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-12 space-y-16">
+
+        <!-- 區塊一：互動式五大宮廟實操步驟 -->
+        <section class="bg-white rounded-3xl shadow-xl border border-rose-100/50 p-6 md:p-10 space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-templeRed flex items-center justify-center gap-2">
+                    <svg class="w-8 h-8 text-warmGold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    雙北精選五大月老宮廟實操步驟
+                </h2>
+                <p class="text-gray-500 text-xs md:text-sm mt-2">請點選下方按鈕切換不同宮廟。我們貼心地在各廟步驟中加入了可點選的「進度核取方塊」，方便你現場參拜時手動記錄！</p>
+            </div>
+
+            <!-- 宮廟 Tab 按鈕 -->
+            <div class="flex flex-wrap justify-center gap-2 md:gap-3">
+                <button id="tab-xiahai" onclick="switchTemple('xiahai')" class="temple-tab px-4 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow bg-templeRed text-white">大稻埕霞海城隍廟</button>
+                <button id="tab-longshan" onclick="switchTemple('longshan')" class="temple-tab px-4 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow bg-white text-rose-950 hover:bg-rose-50">艋舺龍山寺</button>
+                <button id="tab-cihui" onclick="switchTemple('cihui')" class="temple-tab px-4 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow bg-white text-rose-950 hover:bg-rose-50">板橋慈惠宮</button>
+                <button id="tab-hunglodei" onclick="switchTemple('hunglodei')" class="temple-tab px-4 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow bg-white text-rose-950 hover:bg-rose-50">中和烘爐地福德宮</button>
+                <button id="tab-yonglian" onclick="switchTemple('yonglian')" class="temple-tab px-4 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow bg-white text-rose-950 hover:bg-rose-50">蘆洲湧蓮寺</button>
+            </div>
+
+            <!-- 宮廟詳情展示區 -->
+            <div class="bg-stone-50 rounded-2xl p-4 md:p-8 border border-stone-200/60">
+                
+                <!-- 1. 霞海城隍廟 -->
+                <div id="temple-xiahai" class="temple-content space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-stone-200">
+                        <div class="md:col-span-2 space-y-2">
+                            <h3 class="text-xl font-bold text-templeRed">台北大稻埕霞海城隍廟</h3>
+                            <p class="text-xs text-stone-500">📍 地址：台北市大同區迪化街一段61號 | 📞 電話：(02) 2558-0346</p>
+                            <p class="text-xs text-stone-500">🚇 交通：捷運雙連站2號出口轉乘518公車至南京西路口站，步行約3分鐘。</p>
+                        </div>
+                        <div class="bg-rose-50 p-4 rounded-xl border border-rose-200/50 flex flex-col justify-center">
+                            <span class="text-xs text-rose-700 font-semibold">🌟 特色規矩</span>
+                            <span class="text-sm text-rose-900 font-bold mt-1">「無須擲筊，直接求領過爐」</span>
+                            <span class="text-xs text-rose-600 mt-1 leading-relaxed">首次前來直接向辦事處請領供品（含鉛錢、紅絲線與喜糖），隨後直接於天公爐過爐。</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-stone-800 text-sm md:text-base flex items-center gap-2">
+                            <span class="w-2 h-4 bg-templeRed rounded-full"></span> 實操參拜進度清單（可手動勾選）
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 1:</strong> 於金紙鋪準備金紙與三柱線香。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 2:</strong> 首次參拜者，向辦事處取得包含喜糖、紅棗及包裹鉛錢之紅線的專屬供品（切勿拆開紅紙包裝，以免鉛錢遺失）。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 3:</strong> 點香處將三柱香完全點燃。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 4:</strong> 面朝外拜天公，自我介紹姓名、年齡、現居地址，祈求平安。此時先不插香，將香帶入正殿。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 5:</strong> 回正殿領取供品，面對城隍爺、月老及眾神，自我介紹，詳細說明理想對象條件，並承諾願望達成後帶喜餅回來答謝。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 6:</strong> 拜右側偏殿義勇公（祈求防小人、防諸事不順）。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 7:</strong> 拜偏殿城隍夫人（祈求家庭美滿、感情和諧）。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 8:</strong> 拜菩薩（祈求開啟智慧、心境平和）。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 9:</strong> 前往廟埕天公爐，將三柱香合併插入香爐中。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 10:</strong> 將紅線、鉛錢平舉，於天公爐上方「順時針繞三圈」完成過爐，隨後收於皮夾內妥善保存。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 11:</strong> 將金紙放入指定收集箱內，由廟方集中代為化火。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 12:</strong> 吃喜糖，喝由廟方熬製之平安茶（請勿用口吹涼，以免吹散緣分），至此圓滿結束。</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 龍山寺 -->
+                <div id="temple-longshan" class="temple-content hidden space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-stone-200">
+                        <div class="md:col-span-2 space-y-2">
+                            <h3 class="text-xl font-bold text-templeRed">艋舺龍山寺</h3>
+                            <p class="text-xs text-stone-500">📍 地址：台北市萬華區廣州街211號 | 🚇 交通：捷運龍山寺站1號出口，步行約3分鐘。</p>
+                        </div>
+                        <div class="bg-rose-50 p-4 rounded-xl border border-rose-200/50 flex flex-col justify-center">
+                            <span class="text-xs text-rose-700 font-semibold">🌟 特色規矩</span>
+                            <span class="text-sm text-rose-900 font-bold mt-1">「連續擲出三個聖筊」</span>
+                            <span class="text-xs text-rose-600 mt-1 leading-relaxed">不可直奔月老廳。必須先依序敬拜全殿神明，雙手合十向月老稟報個資後，連擲得三個聖筊方可領取紅線。</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-stone-800 text-sm md:text-base flex items-center gap-2">
+                            <span class="w-2 h-4 bg-templeRed rounded-full"></span> 實操參拜進度清單（可手動勾選）
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 1:</strong> 由面對廟宇右手邊的「龍門」進入。可於零售處添購餅乾、甜味糖果作為月老供品。<strong>（龍山寺不提供點香，全程合掌敬拜）</strong></span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 2:</strong> 參拜三寶佛：面向正殿中，先拜中間「釋迦牟尼佛」、再拜左右側「藥師佛」及「阿彌陀佛」。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 3:</strong> 朝拜正殿觀世音菩薩，再拜兩側文殊菩薩與普賢菩薩。轉身朝天朝拜天公。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 4:</strong> 依序參拜後殿神明：關聖帝君、天上聖母、文昌帝君等各神尊，絕對不可以直接跳過跑去月老殿。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 5:</strong> 至後殿左側月老廳，雙掌合十稟明自己的「姓名、生辰、居住地址、喜歡對象之具體條件」。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 6:</strong> 取一對筊，合掌祈求是否可以拿取紅線（姻緣線）。<strong>必須連續獲得「三個聖筊」</strong>。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 7:</strong> 成功擲得三個聖筊後，免費取一條紅線，步行回<strong>正殿觀音爐前</strong>（非月老爐前），以<strong>順時針方向旋轉繞天公爐三圈過爐</strong>。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 8:</strong> 收好紅線（放入皮夾或包包內，官方極不建議戴在手上容易遺失），隨後由「虎門」出廟。</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. 板橋慈惠宮 -->
+                <div id="temple-cihui" class="temple-content hidden space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-stone-200">
+                        <div class="md:col-span-2 space-y-2">
+                            <h3 class="text-xl font-bold text-templeRed">板橋慈惠宮</h3>
+                            <p class="text-xs text-stone-500">📍 地址：新北市板橋區府中路81號 | 📞 電話：(02) 2965-0012</p>
+                            <p class="text-xs text-stone-500">🚇 交通：捷運府中站，朝板橋林家花園方向步行約5分鐘。</p>
+                        </div>
+                        <div class="bg-rose-50 p-4 rounded-xl border border-rose-200/50 flex flex-col justify-center">
+                            <span class="text-xs text-rose-700 font-semibold">🌟 特色規矩</span>
+                            <span class="text-sm text-rose-900 font-bold mt-1">「雙數供品與姻緣袋」</span>
+                            <span class="text-xs text-rose-600 mt-1 leading-relaxed">需準備雙數的糖果、帶殼龍眼乾作為供品，並在擲得一個聖筊後，抽取或購領姻緣袋，回家後夜置枕下牽線。</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-stone-800 text-sm md:text-base flex items-center gap-2">
+                            <span class="w-2 h-4 bg-templeRed rounded-full"></span> 實操參拜進度清單（可手動勾選）
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 1:</strong> 準備冰糖、帶殼龍眼乾及金紙。<strong>供品數量必須是雙數</strong>，寓意成雙成對。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 2:</strong> 進入正殿，先向主神天上聖母祭拜，說明來意，並依序參拜各殿神明。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 3:</strong> 前往一樓後殿的月老星君前。雙合掌長跪，默念姓名、住址、農曆生辰及理想伴侶條件。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 4:</strong> 擲筊請示，<strong>擲得「一個聖筊」後</strong>，於案桌上抽取姻緣線，或向服務台購買姻緣袋。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 5:</strong> 將求得的姻緣袋（線），至月老香爐上以<strong>順時針方向過爐繞三圈</strong>。（注意一條紅線限在單一廟過爐，勿多廟重複過）。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 6:</strong> 帶回的姻緣線可放置枕頭下（一端線頭留置在外以利月老牽線），冰糖與龍眼乾需帶回煮水喝完，代表祝福圓滿。</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. 烘爐地福德宮 -->
+                <div id="temple-hunglodei" class="temple-content hidden space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-stone-200">
+                        <div class="md:col-span-2 space-y-2">
+                            <h3 class="text-xl font-bold text-templeRed">中和烘爐地南山福德宮</h3>
+                            <p class="text-xs text-stone-500">📍 地址：新北市中和區興南路二段399巷160-1號 | 📞 開放時間：24小時</p>
+                            <p class="text-xs text-stone-500">🚌 交通：於捷運南勢角站4號出口，轉乘F512副線公車登山或轉乘計程車直達財神殿。</p>
+                        </div>
+                        <div class="bg-rose-50 p-4 rounded-xl border border-rose-200/50 flex flex-col justify-center">
+                            <span class="text-xs text-rose-700 font-semibold">🌟 特色規矩</span>
+                            <span class="text-sm text-rose-900 font-bold mt-1">「求財與求緣並重」</span>
+                            <span class="text-xs text-rose-600 mt-1 leading-relaxed">月老殿供奉於近十幾年興建的財神殿內。求得姻緣之餘，也能通過「五路財神橋」祈求財氣，愛情麵包兼顧。</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-stone-800 text-sm md:text-base flex items-center gap-2">
+                            <span class="w-2 h-4 bg-templeRed rounded-full"></span> 實操參拜進度清單（可手動勾選）
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 1:</strong> 準備甜食供品（土地公與財神喜愛甜品）與雙數供品，並購買五支香。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 2:</strong> <strong>天公爐：</strong>至財神殿外朝拜天公，插第一支香。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 3:</strong> <strong>正殿：</strong>敬拜福德正神與五路財神，插第二支香。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 4:</strong> <strong>文昌殿：</strong>朝拜文昌帝君（可於此投遞名片或准考證），插第三支香。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 5:</strong> <strong>月老殿：</strong>拜月下老人，說明個資、對象訴求，插第四支香。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 6:</strong> 向月老擲筊祈求，<strong>求得「一個聖筊」後</strong>，至櫃檯購領紅線（男紅女藍）及特製的「月老好神衣」。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 7:</strong> <strong>過財神橋：</strong>至財神橋前向玄壇真君參拜，隨喜香油錢領取平安符。迅速走過天官五路財神橋，並在出口處「敲鐘一次」迎福。插最後一支香。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 8:</strong> 摸一下大元寶，並在聚寶盆換取開運母錢，連同紅線等供品在香爐上<strong>順時針過火繞三圈</strong>後，收進錢包。</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. 湧蓮寺 -->
+                <div id="temple-yonglian" class="temple-content hidden space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-stone-200">
+                        <div class="md:col-span-2 space-y-2">
+                            <h3 class="text-xl font-bold text-templeRed">蘆洲湧蓮寺</h3>
+                            <p class="text-xs text-stone-500">📍 地址：新北市蘆洲區得勝街150號 | 🚇 交通：捷運三民高中站，步行約10分鐘。</p>
+                        </div>
+                        <div class="bg-rose-50 p-4 rounded-xl border border-rose-200/50 flex flex-col justify-center">
+                            <span class="text-xs text-rose-700 font-semibold">🌟 特色規矩</span>
+                            <span class="text-sm text-rose-900 font-bold mt-1">「連擲三個聖筊」</span>
+                            <span class="text-xs text-rose-600 mt-1 leading-relaxed">主祀觀音佛祖。月老供奉於後殿，需準備兩份金紙（一份拜主神，一份拜月老），且求紅線需連續擲出三次聖筊。</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-stone-800 text-sm md:text-base flex items-center gap-2">
+                            <span class="w-2 h-4 bg-templeRed rounded-full"></span> 實操參拜進度清單（可手動勾選）
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 1:</strong> 由右手側「龍門」進廟。準備糖果、水果等素雅供品及<strong>兩份金紙</strong>（一份敬觀音菩薩，一份敬月下老人）。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 2:</strong> 點五支香。先向天公爐三拜插香，再拜正殿主祀觀世音菩薩及眾神明致敬，插第二支香。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 3:</strong> 移步至後殿，依序參拜延平郡王、天上聖母、註生娘娘及文武財神，插第三支與第四支香。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 4:</strong> 前往後殿月老星君前。雙掌合十稟報個資與感情現狀，並清晰唸出心中祈求的對象清單。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 5:</strong> 雙手合掌向月老求取紅線，<strong>必須連續擲得「三個聖筊」</strong>。插上最後一根香。</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-white p-3 rounded-lg border border-stone-200/60 hover:bg-rose-50/20 cursor-pointer transition">
+                                <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5">
+                                <span class="text-xs md:text-sm text-stone-700"><strong>步驟 6:</strong> 拿到紅線後，至天公爐以<strong>順時針方向過爐繞三圈</strong>，並妥善收納隨身携带。亦可於現場登記處申請點設姻緣燈。</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 區塊二：互動式擇偶條件代價產生器 -->
+        <section class="bg-[#FFFDFB] rounded-3xl shadow-xl border border-amber-100 p-6 md:p-10 space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-amber-950 flex items-center justify-center gap-2">
+                    <svg class="w-8 h-8 text-warmGold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                    擇偶條件「數據化」自省產生器
+                </h2>
+                <p class="text-gray-600 text-xs md:text-sm mt-2">
+                    在心理學中，寫下理想條件是一次「認知澄清」。但每項優點的背後往往有其「隱性因果代價」。請試著輸入你的理想條件，我們將為你剖析現實與自省代價！
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 輸入表單 -->
+                <div class="space-y-6 bg-white p-6 rounded-2xl border border-stone-200 shadow-inner">
+                    <h3 class="font-bold text-stone-800 text-base border-b pb-3 flex items-center gap-2">
+                        <span class="w-1 h-4 bg-warmGold rounded-full"></span> 理想對象特質輸入板
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs md:text-sm font-semibold text-stone-700 mb-1">外形身高條件：</label>
+                            <input id="input-height" type="text" class="w-full text-xs md:text-sm p-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="例如：身高175以上、單眼皮、不抽菸...">
+                        </div>
+                        <div>
+                            <label class="block text-xs md:text-sm font-semibold text-stone-700 mb-1">經濟財務條件：</label>
+                            <input id="input-finance" type="text" class="w-full text-xs md:text-sm p-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="例如：月薪50K以上、能主動儲蓄...">
+                        </div>
+                        <div>
+                            <label class="block text-xs md:text-sm font-semibold text-stone-700 mb-1">個性與社交特質：</label>
+                            <input id="input-social" type="text" class="w-full text-xs md:text-sm p-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="例如：溫和幽默、生氣時願意理性溝通...">
+                        </div>
+                        <div>
+                            <label class="block text-xs md:text-sm font-semibold text-stone-700 mb-1">未來生活與觀念共識：</label>
+                            <input id="input-future" type="text" class="w-full text-xs md:text-sm p-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="例如：1至3年內有結婚打算、能共同負擔家務...">
+                        </div>
+                    </div>
+
+                    <button onclick="generateInsight()" class="w-full py-3 bg-warmGold hover:bg-amber-600 text-white font-bold rounded-xl transition duration-300 shadow">
+                        生成「擇偶自省與代價」報告
+                    </button>
+                </div>
+
+                <!-- 生成分析結果 -->
+                <div class="bg-stone-900 text-stone-100 p-6 rounded-2xl shadow-xl flex flex-col justify-between border-2 border-amber-500/30">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-stone-700 pb-3">
+                            <h3 class="font-bold text-amber-400 text-base">⚖️ 月老微言 · 自省天平</h3>
+                            <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono">INTELLIGENT ANALYSIS</span>
+                        </div>
+                        
+                        <div id="insight-box" class="space-y-4 text-xs md:text-sm leading-relaxed custom-scrollbar max-h-72 overflow-y-auto pr-2">
+                            <p class="text-stone-400 italic">在左側輸入您對另一半的真實渴望，然後點擊按鈕，月老將為你提供一針見血的客觀現實反思與心流反饋。</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-stone-800 text-[11px] text-stone-400">
+                        💡 <strong>月老小提示：</strong>高價值的關係是雙向能量的流動。當我們在清單中提出要求時，可以誠實地反問自己：「我是否也具備等量的情感反饋或支持能力呢？」這能大幅提高正緣牽線的精準度。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 區塊三：參拜禁忌防線 -->
+        <section class="space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-templeRed flex items-center justify-center gap-2">
+                    <svg class="w-8 h-8 text-warmGold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    月老參拜六大嚴格民俗禁忌
+                </h2>
+                <p class="text-gray-500 text-xs md:text-sm mt-2">民俗儀式著重能量完整性，不經意的舉動在民俗隱喻中可能損害因緣。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 卡片 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-rose-100 text-rose-700 rounded-full flex items-center justify-center font-bold text-lg mb-4">1</div>
+                    <h3 class="font-bold text-stone-800 mb-2 flex items-center gap-2">
+                        傘不入內，防「散」大忌
+                    </h3>
+                    <p class="text-xs md:text-sm text-stone-600 leading-relaxed">
+                        入廟時絕對禁止開傘，且雨傘不可拿在手上參拜。因「傘」與「散」同音，象徵因緣未結先散。雨天請務必在廟門前將雨傘折疊，收進隨身背包中。
+                    </p>
+                </div>
+                <!-- 卡片 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-rose-100 text-rose-700 rounded-full flex items-center justify-center font-bold text-lg mb-4">2</div>
+                    <h3 class="font-bold text-stone-800 mb-2">平安結緣茶，切勿吹涼</h3>
+                    <p class="text-xs md:text-sm text-stone-600 leading-relaxed">
+                        飲用廟宇提供的熱紅棗平安茶時，<strong>絕對不可以用嘴去吹涼</strong>！在民俗隱喻中，「吹茶」動作代表會將月老正在為你拉攏的緣分吹散、吹熄。請靜候茶水自然放涼再飲。
+                    </p>
+                </div>
+                <!-- 卡片 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-rose-100 text-rose-700 rounded-full flex items-center justify-center font-bold text-lg mb-4">3</div>
+                    <h3 class="font-bold text-stone-800 mb-2">不挑剔喜糖，緣分不挑</h3>
+                    <p class="text-xs md:text-sm text-stone-600 leading-relaxed">
+                        拿取廟方大盆中的喜糖與結緣喜餅時，應順手、隨機取用，<strong>千萬不可在盆中挑挑揀揀</strong>。挑喜糖在民俗中象徵此人「感情上極度挑剔」，容易錯失正緣。
+                    </p>
+                </div>
+                <!-- 卡片 4 -->
+                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-rose-100 text-rose-700 rounded-full flex items-center justify-center font-bold text-lg mb-4">4</div>
+                    <h3 class="font-bold text-stone-800 mb-2">臉部明晰，服儀端莊</h3>
+                    <p class="text-xs md:text-sm text-stone-600 leading-relaxed">
+                        參拜時必須取下帽子、太陽眼鏡（墨鏡）及耳機。遮蔽面部會讓月老看不清你的長相，影響「姻緣簿」配對的精確度。服裝切忌過度暴露，勿穿涼拖鞋。
+                    </p>
+                </div>
+                <!-- 卡片 5 -->
+                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-rose-100 text-rose-700 rounded-full flex items-center justify-center font-bold text-lg mb-4">5</div>
+                    <h3 class="font-bold text-stone-800 mb-2">專注心流，不拿紙小抄</h3>
+                    <p class="text-xs md:text-sm text-stone-600 leading-relaxed">
+                        請勿一邊看手機滑螢幕，或拿著寫滿數十條條件的紙條像唸經一樣照書宣科，這對神明是不尊重的行為。請於出發前將理想特質內化於心，真誠稟報核心的3至5點即可。
+                    </p>
+                </div>
+                <!-- 卡片 6 -->
+                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-rose-100 text-rose-700 rounded-full flex items-center justify-center font-bold text-lg mb-4">6</div>
+                    <h3 class="font-bold text-stone-800 mb-2">唯一紅線，過猶不及</h3>
+                    <p class="text-xs md:text-sm text-stone-600 leading-relaxed">
+                        <strong>每人同一時期、一生僅限求一條紅線</strong>。切勿在不同廟宇重複求取紅線，這不但不能雙重庇佑，反而會造成自身磁場混亂，導致感情糾紛與爛桃花纏身。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 區塊四：願望開花結果後的還願禮軌 -->
+        <section class="bg-white rounded-3xl shadow-xl border border-rose-100/50 p-6 md:p-10 space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-templeRed flex items-center justify-center gap-2">
+                    <svg class="w-8 h-8 text-warmGold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5a2 2 0 10-2 2h2zm0 13C4 20 4 11 4 11c0-1.657 1.343-3 3-3h10c1.657 0 3 1.343 3 3 0 0 0 9-8 10z"/></svg>
+                    情緣牽成後的還願契約
+                </h2>
+                <p class="text-gray-500 text-xs md:text-sm mt-2">在傳統信仰中，求姻緣為神聖契約的祈求。願望達成後需履行還願，有始有終才能獲得最圓滿的守護。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 階段 1 -->
+                <div class="relative bg-stone-50 p-6 rounded-2xl border border-stone-200 space-y-3">
+                    <span class="absolute top-4 right-4 text-xs font-mono bg-stone-200 text-stone-600 px-2 py-1 rounded">STAGE 01</span>
+                    <h3 class="text-lg font-bold text-stone-800">甜蜜穩定：脫單還願</h3>
+                    <p class="text-xs md:text-sm text-stone-600 leading-relaxed">
+                        當你順利擺脫單身、與對方步入穩定交往時：
+                    </p>
+                    <ul class="text-xs md:text-sm text-stone-500 space-y-1 list-disc list-inside">
+                        <li>可偕同另一半一起回到最初求姻緣的廟宇。</li>
+                        <li>準備甜點（如巧克力、甜麻糬）或鮮花一對，向月老稟明雙方名字表示謝意。</li>
+                        <li>祈求未來感情順利穩定、開花結果。</li>
+                    </ul>
+                </div>
+                <!-- 階段 2 -->
+                <div class="relative bg-stone-50 p-6 rounded-2xl border border-stone-200 space-y-3">
+                    <span class="absolute top-4 right-4 text-xs font-mono bg-rose-200 text-rose-700 px-2 py-1 rounded">STAGE 02</span>
+                    <h3 class="text-lg font-bold text-templeRed">白頭偕老：正式結婚還願</h3>
+                    <p class="text-xs md:text-sm text-stone-600 leading-relaxed">
+                        當感情修成正果，雙方決定步入婚姻殿堂時：
+                    </p>
+                    <ul class="text-xs md:text-sm text-stone-500 space-y-1 list-disc list-inside">
+                        <li><strong>核心準備：</strong>攜帶一份正式的「訂婚喜餅、喜糖與喜帖」。</li>
+                        <li>至辦事處登記，在廟內依照常規參拜順序向主神與神明致謝，並於月老前敬獻喜餅。</li>
+                        <li>完成參拜後，<strong>將喜餅與喜糖留在廟中</strong>，委託廟方在大殿或服務台與前來求緣的單身信徒分享，傳遞幸福。</li>
+                        <li>*若不辦婚禮或無喜餅，可以以精緻西點或甜食禮盒代之。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 底部資訊 -->
+    <footer class="bg-rose-950 text-rose-200 py-8 px-6 mt-16 text-center text-xs md:text-sm border-t-2 border-warmGold">
+        <p class="mb-2">© 雙北地區月老信仰研究與實務操作典籍</p>
+        <p class="text-rose-400 font-light text-[11px] md:text-xs">
+            本指南之廟宇實操步驟、禁忌、條件分析均引自各廟宇官方禮俗規範。祝天下有情人終成眷屬。
+        </p>
+    </footer>
+
+    <!-- 網頁互動 JS -->
+    <script>
+        // 1. 宮廟切換函數
+        function switchTemple(templeId) {
+            // 隱藏所有的宮廟內容
+            document.querySelectorAll('.temple-content').forEach(function(el) {
+                el.classList.add('hidden');
+            });
+            // 顯示當前點擊的宮廟內容
+            document.getElementById('temple-' + templeId).classList.remove('hidden');
+
+            // 恢復所有 Tab 按鈕為未選中狀態
+            document.querySelectorAll('.temple-tab').forEach(function(btn) {
+                btn.classList.remove('bg-templeRed', 'text-white');
+                btn.classList.add('bg-white', 'text-rose-950', 'hover:bg-rose-50');
+            });
+            // 設定當前點選的 Tab 為選中狀態
+            document.getElementById('tab-' + templeId).classList.remove('bg-white', 'text-rose-950', 'hover:bg-rose-50');
+            document.getElementById('tab-' + templeId).classList.add('bg-templeRed', 'text-white');
+        }
+
+        // 2. 擇偶條件分析邏輯
+        function generateInsight() {
+            var h = document.getElementById('input-height').value.trim();
+            var f = document.getElementById('input-finance').value.trim();
+            var s = document.getElementById('input-social').value.trim();
+            var ft = document.getElementById('input-future').value.trim();
+
+            var insightBox = document.getElementById('insight-box');
+            insightBox.innerHTML = ''; // 清空原有內容
+
+            if (!h && !f && !s && !ft) {
+                insightBox.innerHTML = '<p class="text-rose-300 italic">請至少在左方一項條件中輸入內容，月老才能為你指點乾坤。</p>';
+                return;
+            }
+
+            var htmlContent = '';
+
+            if (h) {
+                htmlContent += '<div class="bg-stone-800 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">📐 外形與身高條件評註：</span><span class="text-stone-300 font-medium block">「' + h + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>優越的外表、體面俐落的衣著往往需要投入不菲的金錢或精緻打扮時間。當我們渴望對方的外貌令人心動時，必須反思自己平日是否也撥出了相應的精力來建立自己的儀態、衣品與體味管理呢？高顏值對象同時亦可能承受較多的社交誘惑與他人青睞。</p></div>';
+            }
+
+            if (f) {
+                htmlContent += '<div class="bg-stone-800 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">💰 經濟與財務能力評註：</span><span class="text-stone-300 font-medium block">「' + f + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>高薪收入或年薪百萬，往往背後代表著漫長的工時、巨大的職業壓力和隨時待命的狀態。這代表他可能無法隨時在情人節或週末陪伴你，甚至會在約會中頻繁處理公務。如果你需要的是「陪伴」，那就必須謹慎思索追求物質和追求情感付出的平衡點。</p></div>';
+            }
+
+            if (s) {
+                htmlContent += '<div class="bg-stone-800 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">🎭 個性與社交行為評註：</span><span class="text-stone-300 font-medium block">「' + s + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>對你大方、開朗、人見人愛的人，往往對身邊的所有人也展現相同的社交天賦與幽默感。你需要具備強大的內心和安全感，來包容其旺盛的社交需求。如果遇到問題不逃避、講理，自身也應當培養不情緒化、生氣時能好好訴說想法的對等溝通能力。</p></div>';
+            }
+
+            if (ft) {
+                htmlContent += '<div class="bg-stone-800 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">💍 婚育共識與藍圖評註：</span><span class="text-stone-300 font-medium block">「' + ft + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>理想的生活習慣（不抽菸、不做媽寶、預計結婚）需要一個高度自律、對自己人生擁有自主權的人。這類伴侶在關係中通常對你的獨立和邊界要求也較高。當要求生活步調重疊時，要問自己是否做好了共同分擔家庭開銷或家務勞動的實際妥協準備。</p></div>';
+            }
+
+            insightBox.innerHTML = htmlContent;
+        }
+    </script>
+</body>
+</html>
