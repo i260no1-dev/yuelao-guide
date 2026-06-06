@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>雙北月老參拜與空間地圖導覽指南</title>
+    <title>雙北月老參拜與空間地圖導覽指南 3.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans:
+                    colors: {
+                        templeRed: '#9F1239',
+                        templeDark: '#4C0519',
+                        goldAmber: '#D97706',
+                        warmGold: '#F59E0B',
+                        stoneDark: '#1C1917'
                     }
                 }
             }
-        }
+        };
     </script>
     <style>
        .custom-scrollbar::-webkit-scrollbar {
@@ -49,9 +53,9 @@
         }
     </style>
 </head>
-<body class="bg-[#FCF9F7] text-stone-900 font-sans leading-relaxed">
+<body class="bg-[#FCF9F7] text-stoneDark font-sans leading-relaxed">
 
-    <header class="relative overflow-hidden bg-gradient-to-b from-stone-900 via-rose-950 to-rose-900 text-white py-16 px-6 text-center shadow-lg border-b-4 border-amber-600">
+    <header class="relative overflow-hidden bg-gradient-to-b from-templeDark via-rose-950 to-rose-900 text-white py-16 px-6 text-center shadow-lg border-b-4 border-goldAmber">
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                 <path d="M-100,100 C200,-50 300,300 800,50 C1200,-100 1300,400 1800,200" fill="none" stroke="#F59E0B" stroke-width="3"/>
@@ -59,7 +63,7 @@
             </svg>
         </div>
         <div class="relative z-10 max-w-4xl mx-auto space-y-3">
-            <span class="inline-block bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-widest shadow">雙北地區 · 空間導覽 3.0 UIUX 修正版</span>
+            <span class="inline-block bg-goldAmber text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-widest shadow">雙北地區 · 空間導覽 3.0 旗鳴版</span>
             <h1 class="text-3xl md:text-5xl font-black tracking-tight text-amber-100">繫上紅線 · 走入神殿</h1>
             <p class="text-rose-100 text-xs md:text-sm max-w-xl mx-auto font-light leading-relaxed">
                 全台首創「虛擬殿堂 ╳ 儀式軌跡」聯動地圖。點擊步驟，左側地圖立刻指引你目前正站在哪一個殿宇！
@@ -72,7 +76,7 @@
         <section class="text-center space-y-4">
             <p class="text-xs text-rose-800 font-bold uppercase tracking-wider">── 請選擇您要參拜的雙北宮廟 ──</p>
             <div class="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
-                <button id="tab-xiahai" onclick="switchTemple('xiahai')" class="temple-tab px-4 py-2.5 rounded-2xl font-bold text-xs md:text-sm transition-all duration-300 shadow bg-rose-900 text-white border border-transparent">
+                <button id="tab-xiahai" onclick="switchTemple('xiahai')" class="temple-tab px-4 py-2.5 rounded-2xl font-bold text-xs md:text-sm transition-all duration-300 shadow bg-templeRed text-white border border-transparent">
                     ⛩️ 大稻埕霞海城隍廟
                 </button>
                 <button id="tab-longshan" onclick="switchTemple('longshan')" class="temple-tab px-4 py-2.5 rounded-2xl font-bold text-xs md:text-sm transition-all duration-300 shadow bg-white text-rose-950 hover:bg-rose-50 border border-stone-200">
@@ -92,7 +96,7 @@
 
         <section id="temple-intro" class="bg-white rounded-3xl p-6 shadow-md border border-stone-100 flex flex-col md:flex-row gap-6 items-center">
             <div class="w-full md:w-1/3 h-48 rounded-2xl overflow-hidden relative shadow border">
-                <img id="temple-scene-img" src="" alt="廟宇實景" class="w-full h-full object-cover transition-all duration-500">
+                <img id="temple-scene-img" src="" alt="廟宇外觀" class="w-full h-full object-cover transition-all duration-500" onerror="handleImageError(this, 'temple')">
                 <div class="absolute inset-0 bg-gradient-to-t from-stone-900/70 to-transparent flex items-end p-4">
                     <span id="temple-label" class="text-white font-bold text-xs md:text-sm"></span>
                 </div>
@@ -117,7 +121,6 @@
                 </div>
 
                 <div class="bg-amber-50/20 border-2 border-stone-200/80 rounded-2xl p-4 md:p-6 relative aspect-square max-w-sm mx-auto flex flex-col justify-between">
-                    
                     <div class="flex justify-between items-center w-full gap-2">
                         <div id="map-room-left偏殿" class="flex-1 py-2.5 rounded-xl border text-center text-[10px] md:text-xs font-bold transition-all duration-300 bg-stone-100 text-stone-400 border-stone-200 shadow-sm">
                             左偏殿
@@ -180,7 +183,7 @@
                 </div>
 
                 <div class="relative h-64 w-full rounded-2xl overflow-hidden shadow border border-stone-100 bg-stone-100">
-                    <img id="deity-img" src="" alt="當前神明神像" class="w-full h-full object-cover transition-all duration-500">
+                    <img id="deity-img" src="" alt="神像照" class="w-full h-full object-cover transition-all duration-500" onerror="handleImageError(this, 'deity')">
                     <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full flex items-center gap-1.5">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 當前神龕定位
                     </div>
@@ -193,9 +196,14 @@
                     </div>
 
                     <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-200/50 space-y-2">
-                        <h4 class="text-xs font-bold text-amber-800 uppercase tracking-wide flex items-center gap-1">
-                            💬 請在此對神明默唸（通關密語）：
-                        </h4>
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-xs font-bold text-amber-800 uppercase tracking-wide flex items-center gap-1">
+                                💬 請在此對神明默唸（通關密語）：
+                            </h4>
+                            <button onclick="speakPrayer()" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-2 py-1 rounded-lg flex items-center gap-1 shadow-sm transition">
+                                🔈 聽口白
+                            </button>
+                        </div>
                         <div class="text-xs md:text-sm text-stone-800 leading-relaxed italic bg-white p-3 rounded-lg border border-stone-100 shadow-sm" id="step-dialogue"></div>
                     </div>
 
@@ -217,7 +225,7 @@
             </div>
         </section>
 
-        <section class="bg- rounded-3xl shadow-xl border border-amber-100 p-6 md:p-10 space-y-8">
+        <section class="bg-stone-50 rounded-3xl shadow-xl border border-amber-100 p-6 md:p-10 space-y-8">
             <div class="text-center max-w-2xl mx-auto">
                 <h2 class="text-xl md:text-2xl font-bold text-stone-900 flex items-center justify-center gap-2">
                     <svg class="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
@@ -287,378 +295,376 @@
     </footer>
 
     <script>
+        // 智慧防斷鏈圖片機制：備用典雅香火氛圍意境圖
+        function handleImageError(img, type) {
+            img.onerror = null; // 防止無限迴圈
+            if (type === 'temple') {
+                img.src = 'https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=800&q=80';
+            } else {
+                img.src = 'https://images.unsplash.com/photo-1610123598147-f632aa18b275?auto=format&fit=crop&w=800&q=80';
+            }
+        }
+
+        // 口白語音合成朗讀功能 (Web Speech API TTS)
+        function speakPrayer() {
+            const dialogueText = document.getElementById('step-dialogue').innerText;
+            // 清理口白中的無聲提示文字
+            const speechText = dialogueText.replace(/（.*）/g, "").replace(/\(.*\)/g, "").trim();
+            
+            if (speechText) {
+                // 先取消目前正在朗讀的語音，防止重複疊加
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(speechText);
+                utterance.lang = 'zh-TW';
+                utterance.rate = 0.95; // 稍慢的速度，讓口白聽起來更莊嚴
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // 五大宮廟 100% 完整步驟與對應空間、語意、避忌之詳細資料庫
         const temples = {
             xiahai: {
                 title: "大稻埕霞海城隍廟",
-                sceneImg: "https://images.unsplash.com/photo-1610123598147-f632aa18b275?auto=format&fit=crop&w=800&q=80",
-                address: "📍 台北市大同區迪化街一段61號 | (02) 2558-0346 | 營業時間：07:00 ~ 19:00",
-                desc: "以「極高效率」與「無須擲筊求紅線」名滿天下。空間雖然不大，但每日前來尋求良緣的信眾絡繹不絕。只要向月老公稟明心意，便可直接請領供品與紅線過爐帶走，極具現代都會的高效率節奏。",
-                ruleTag: "🌟 規矩特色：無須擲筊 · 一次過爐",
-                steps: [
-                    {
-                        number: "步驟 1",
-                        type: "【前置準備】金紙香舖",
-                        deity: "金紙鋪 · 備辦禮儀",
-                        img: "https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=800&q=80",
-                        action: "至廟旁金紙鋪備齊金紙與三柱線香。首次參拜者需前往廟內辦事處取得專屬供品（喜糖、紅棗與紅線）。",
-                        dialogue: "向辦事處人員說明是首次參拜，並請領供品。此時不需特別唸誦，雙手誠心捧著供品即可。",
-                        warning: "紅線綑綁的紅紙內已包裹軟鉛錢（台語諧音：緣錢），切勿當場拆開以免遺失！",
+                sceneImg: "https://upload.wikimedia.org/wikipedia/commons/8/8d/%E8%87%BA%E5%8C%97%E5%B8%82%E8%89%8B%E8%88%BA%E9%BE%8D%E5%B1%B1%E5%AF%BA%E7%9A%84%E9%A6%99%E7%81%AB%E9%BC%8E%E7%9B%9B.jpg",
+                address: "📍 台北市大同區迪化街一段61號 | 🕒 營業時間：07:00 ~ 19:00",
+                desc: "以「極高效率」與「無須擲筊」著稱。首次參拜者直接向辦事處請領包含紅線、鉛錢與喜糖的專屬供品，參拜後直接過爐，不設擲筊求紅線流程。",
+                ruleTag: "🌟 規矩特色：無須擲筊 · 一次求領過爐",
+                steps:。首次參拜者請前往辦事處，向櫃檯取得「喜糖、紅棗與紅線」作為專屬供品。",
+                        dialogue: "（不需特別唸誦。請雙手誠敬端好金紙與喜慶供品。）",
+                        warning: "紅線綑綁的紅紙內已包裹薄軟鉛錢（諧音：緣錢），切勿當場拆開以免遺失！",
                         mapRoom: "天公爐"
                     },
                     {
                         number: "步驟 2",
-                        type: "【天公】主掌平安",
-                        deity: "天公爐 · 敬天謝地",
-                        img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80",
+                        type: "【天公】敬天保平安",
+                        deity: "廟埕 ╳ 天公爐",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/%E8%87%BA%E5%8C%97%E5%B8%82%E8%89%8B%E8%88%BA%E9%BE%8D%E5%B1%B1%E5%AF%BA%E7%9A%84%E9%A6%99%E7%81%AB%E9%BC%8E%E7%9B%9B.jpg",
                         action: "至點香處將三柱香完全點燃。面朝外拜天公，自我介紹姓名、年齡、現居地址，祈求平安。",
-                        dialogue: "「天公祖在上，弟子（信女）OOO，生於農曆OO年OO月OO日，住址OOO。今日前來霞海城隍廟祈求姻緣，求賜平安順遂。」",
-                        warning: "此時請勿插香！請將三柱香完好帶入正殿中。",
+                        dialogue: "「天公祖在上，弟子（信女）OOO，生於農曆OO年OO月OO日，現居（住家地址）。今日前來大稻埕霞海城隍廟向月下老人祈求好緣分，請保佑我凡事平順、出入平安。」",
+                        warning: "此時先不要插香！請合掌三拜後，將三柱香完好帶入正殿中。",
                         mapRoom: "天公爐"
                     },
                     {
                         number: "步驟 3",
                         type: "【主祀】城隍爺 & 月下老人",
-                        deity: "正殿 · 城隍爺 & 月下老人",
-                        img: "https://images.unsplash.com/photo-1610123598147-f632aa18b275?auto=format&fit=crop&w=800&q=80",
-                        action: "回正殿領取供品，面對城隍爺與月下老人，自我介紹個資，並詳細說明希望遇到的對象條件。",
-                        dialogue: "「城隍爺、月老公在上，弟子（信女）OOO，農曆生辰OOO，現居OOO。希望求得正緣，理想對象條件為：（陳述具體對象特質）。若姻緣有成，必帶喜餅前來答謝。」",
+                        deity: "正殿 ╳ 城隍老爺 & 月老公",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/c/c8/%E5%A4%A7%E7%A8%BB%E5%9F%95%E9%9C%9E%E6%B5%B7%E5%9F%8E%E9%9A%8D%E5%BB%9F%E5%9F%8E%E9%9A%8D%E7%88%BA.jpg",
+                        action: "回正殿領取供品，面對城隍爺、月老公公及眾神，自我介紹，詳細說明理想伴侶特質，承諾事成喜餅還願。",
+                        dialogue: "「城隍老爺、月老公公在上，弟子（信女）OOO，生辰OOO，現居OOO。希望求得正緣桃花，理想對象條件為：（陳述具體特質）。若未來順利開花結果，必定攜帶喜餅回來還願答謝。」",
                         warning: "條件請盡量明確但務必切合現實！不要好高騖遠，以免為難神明！",
                         mapRoom: "正殿"
                     },
                     {
                         number: "步驟 4",
-                        type: "【配祀】防小人避惡緣",
-                        deity: "偏殿 · 義勇公",
-                        img: "https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&w=800&q=80",
-                        action: "參拜右側偏殿義勇公，祈求排除小人、爛桃花，願事事平安順利。",
-                        dialogue: "「義勇公在上，求您保佑弟子（信女）小人遠離，斬斷爛桃花，諸事平順、工作順利。」",
-                        warning: "若身邊頻頻出現爛桃花，此步驟需誠心向義勇公表述並請求幫忙斬斷。",
+                        type: "【配祀】防小人排除孽緣",
+                        deity: "右側偏殿 ╳ 義勇公",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/%E8%87%BA%E5%8C%97%E5%B8%82%E8%89%8B%E8%88%BA%E9%BE%8D%E5%B1%B1%E5%AF%BA%E7%9A%84%E9%A6%99%E7%81%AB%E9%BC%8E%E7%9B%9B.jpg",
+                        action: "參拜右側偏殿義勇公，祈求排除小人、防範爛桃花、諸事平安順遂。",
+                        dialogue: "「義勇公在上，弟子（信女）OOO，求您保佑我小人遠離，防範爛桃花，工作與生活諸事平順。」",
+                        warning: "若身邊頻頻出現騷擾或不合適的爛桃花，在此步驟需誠心向義勇公表述並請求幫忙斬斷。",
                         mapRoom: "right偏殿"
                     },
                     {
                         number: "步驟 5",
-                        type: "【配祀】保佑家庭和諧",
-                        deity: "偏殿 · 城隍夫人",
-                        img: "https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?auto=format&fit=crop&w=800&q=80",
+                        type: "【配祀】家庭和諧幸福",
+                        deity: "偏殿 ╳ 城隍夫人",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/%E8%87%BA%E5%8C%97%E5%B8%82%E8%89%8B%E8%88%BA%E9%BE%8D%E5%B1%B1%E5%AF%BA%E7%9A%84%E9%A6%99%E7%81%AB%E9%BC%8E%E7%9B%9B.jpg",
                         action: "前往偏殿參拜城隍夫人，請夫人保佑家庭幸福、夫妻或情侶感情和諧。",
-                        dialogue: "「城隍夫人在上，求您保佑弟子（信女）與伴侶感情契合，未來家庭幸福美滿、和諧順遂。」",
-                        warning: "已有對象者可在此祈求感情更穩固，單身者可祈求未來家庭生活美滿。",
+                        dialogue: "「城隍夫人在上，求您保佑我與伴侶感情穩定，未來家庭和睦幸福、彼此相知相惜。」",
+                        warning: "已有穩定伴侶者在此處祈求感情更穩固，單身者可祈求未來家庭和諧美滿。",
                         mapRoom: "left偏殿"
                     },
                     {
                         number: "步驟 6",
-                        type: "【配祀】啟迪智慧",
-                        deity: "後殿 · 諸菩薩",
-                        img: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80",
-                        action: "參拜菩薩，祈求心靈平和、開啟感情與人生的智慧。",
-                        dialogue: "「菩薩在上，求您保佑我智慧增長、心境祥和，在面對人生與感情抉擇時能有清晰冷靜的判斷。」",
-                        warning: "心不平靜時，不宜急躁求姻緣。藉此參拜讓身心沈澱。",
+                        type: "【配祀】啟迪智慧心境",
+                        deity: "後殿 ╳ 菩薩殿",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/%E8%87%BA%E5%8C%97%E5%B8%82%E8%89%8B%E8%88%BA%E9%BE%8D%E5%B1%B1%E5%AF%BA%E7%9A%84%E9%A6%99%E7%81%AB%E9%BC%8E%E7%9B%9B.jpg",
+                        action: "前往後殿參拜觀音菩薩與眾神，祈求智慧增長、心境平和冷靜。",
+                        dialogue: "「菩薩在上，求您開啟弟子（信女）的感情智慧，使我心平氣和，做人處事大度明辨。」",
+                        warning: "保持情緒祥和，感情路上不易被甜言蜜語蒙蔽。",
                         mapRoom: "後殿"
                     },
                     {
                         number: "步驟 7",
-                        type: "【過爐】緣分加持",
-                        deity: "天公爐 · 順時針過爐",
-                        img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80",
-                        action: "走到天公爐，將三柱香一次插入爐中。隨後將包裹鉛錢的紅線在香爐上方「順時針繞三圈過爐」。",
-                        dialogue: "「請月老公公加持此紅線，引領我的緣分早日到來。」",
-                        warning: "紅線過爐後直接放入皮夾、包包內貼身保存，不建議戴在手腕上，以免拉扯斷裂！",
+                        type: "【過爐】神力加持過火",
+                        deity: "天公爐 ╳ 順時針過爐",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/%E8%87%BA%E5%8C%97%E5%B8%82%E8%89%8B%E8%88%BA%E9%BE%8D%E5%B1%B1%E5%AF%BA%E7%9A%84%E9%A6%99%E7%81%AB%E9%BC%8E%E7%9B%9B.jpg",
+                        action: "依地上指示回到廟埕天公爐，將手中的三柱香合併插入爐中。將紅線與鉛錢於香爐上方「順時針繞三圈過爐」。",
+                        dialogue: "「請天公與月老公公加持，指引弟子（信女）的紅線早日牽成正緣。」",
+                        warning: "過爐後的紅線與鉛錢請貼身收在皮夾或隨身包包，不要隨便戴在手腕上，以免拉扯斷裂。",
                         mapRoom: "天公爐"
                     },
                     {
                         number: "步驟 8",
-                        type: "【結緣】沾喜飲福",
-                        deity: "廟埕 · 飲結緣平安茶",
-                        img: "https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=800&q=80",
-                        action: "喝杯熱平安茶（由紅棗、枸杞與喜糖熬製）。將金紙放至金紙箱，由廟方代為集中焚燒。",
-                        dialogue: "心中默默感謝神明與廟方的平安茶。",
-                        warning: "⚠️ 禁忌：結緣平安茶絕對不能用嘴吹涼！吹茶在民俗中代表會「把緣分吹散、吹熄」！請耐心靜置放涼或小口啜飲。",
+                        type: "【結緣】廣結眾緣沾喜",
+                        deity: "廟埕 ╳ 飲熱平安茶",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/%E8%87%BA%E5%8C%97%E5%B8%82%E8%89%8B%E8%88%BA%E9%BE%8D%E5%B1%B1%E5%AF%BA%E7%9A%84%E9%A6%99%E7%81%AB%E9%BC%8E%E7%9B%9B.jpg",
+                        action: "將供品中的喜糖留下（供廟方煮平安茶），喝杯由紅棗、枸杞與拜過喜糖熬製的平安茶，廣結善緣。",
+                        dialogue: "（口中默默感謝神明與廟方。享用喜甜平安茶。）",
+                        warning: "⚠️ 禁忌：平安茶絕對不可以用嘴吹涼！吹茶在民俗中代表會「把緣分吹散、吹熄」！請靜候自然放涼再行啜飲。",
                         mapRoom: "天公爐"
                     }
                 ]
             },
             longshan: {
                 title: "艋舺龍山寺",
-                sceneImg: "https://images.unsplash.com/photo-1582298538104-fe2e74c27f59?auto=format&fit=crop&w=800&q=80",
-                address: "📍 台北市萬華區廣州街211號 | 捷運龍山寺站1號出口步行3分鐘 | 營業時間：06:00 ~ 22:00",
-                desc: "以「重視正緣、考驗極為嚴謹」著稱。龍山寺不提供焚香，全程雙手合十參拜。要獲得月老公公的紅線，必須按照全殿神明的空間動線走完，並在月老廳前連續擲出三個聖筊，代表神明的嚴謹應允。",
-                ruleTag: "🌟 規矩特色：不點線香 · 連續三個聖筊",
-                steps: [
-                    {
-                        number: "步驟 1",
-                        type: "【前置準備】敬神之禮",
-                        deity: "三川殿 · 龍門入廟",
-                        img: "https://images.unsplash.com/photo-1582298538104-fe2e74c27f59?auto=format&fit=crop&w=800&q=80",
-                        action: "由面對廟門右手邊的「龍門」進廟。可於供品販賣處購買餅乾、喜糖等甜品，放在月老殿供桌上。<strong>（龍山寺全面不點香，全程合掌敬拜）</strong>",
-                        dialogue: "「弟子（信女）OOO，今日恭敬前來參拜龍山寺眾神，祈求一切平安。」",
-                        warning: "⚠️ 禁忌：千萬不可一進廟就直奔月老廳！這是大忌！必須先向正殿、後殿眾神行禮致意。",
+                sceneImg: "https://upload.wikimedia.org/wikipedia/commons/7/71/%E5%8F%B0%E5%8C%97%E5%B8%82%E8%89%8B%E8%88%BA%E9%BE%8D%E5%B1%B1%E5%AF%BA.jpg",
+                address: "📍 台北市萬華區廣州街211號 | 🕒 營業時間：06:00 ~ 22:00",
+                desc: "以「重視正緣」與「考驗嚴謹」聞名。求取紅線必須依序參拜完全殿神明，並向月老稟報個資後，連續擲出三個聖筊方可領取免費紅線。",
+                ruleTag: "🌟 規矩特色：全程不點香 · 連續三個聖筊考驗",
+                steps:。可於供品販賣處自備或購買糖果、甜餅等甜食放於供桌上。<strong>（龍山寺全面不點線香，雙手合十參拜）</strong>。",
+                        dialogue: "（雙掌平貼合併，指尖朝上，放置於胸前中心位置。心靈澄澈致意）。",
+                        warning: "⚠️ 禁忌：絕對不能一進廟就直接奔往後殿月老廳！這是極不禮貌的做法。",
                         mapRoom: "天公爐"
                     },
                     {
                         number: "步驟 2",
-                        type: "【主祀】觀音菩薩",
-                        deity: "正殿 · 觀世音菩薩",
-                        img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80",
-                        action: "於正殿前，雙手合掌向主神觀世音菩薩、文殊菩薩、普賢菩薩參拜，隨後轉身面向天空朝拜天公。",
-                        dialogue: "「觀音佛祖在上，弟子（信女）OOO，生日OOO，現居OOO。今日前來參拜，請保佑我平安順遂，感情順利。」",
-                        warning: "在龍山寺拜拜時，請將雙掌平貼合併，指尖朝上，放置於胸前中心位置合十。",
+                        type: "【主祀】朝拜觀世音",
+                        deity: "正殿 ╳ 觀世音菩薩 & 天公",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/c/c8/%E8%89%8B%E8%88%BA%E9%BE%8D%E5%B1%B1%E5%AF%BA-%E9%9B%B2%E9%BE%8D%E5%BE%A1%E8%B7%AF.jpg",
+                        action: "參拜正殿主神觀世音菩薩、文殊菩薩與普賢菩薩，並轉身面向天空朝拜玉皇大帝（天公）。",
+                        dialogue: "「觀音佛祖在上，弟子（信女）OOO，農曆生日OO年OO月OO日，現居（住址）。今日虔誠前來參拜，祈求佛祖保佑全家平安，弟子亦會前往後殿向月老求緣。」",
+                        warning: "參拜觀世音菩薩時，雙手合十虔誠三鞠躬以示最深敬意。",
                         mapRoom: "正殿"
                     },
                     {
                         number: "步驟 3",
-                        type: "【後殿】禮敬諸神",
-                        deity: "後殿 · 天上聖母/關聖帝君/文昌帝君",
-                        img: "https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&w=800&q=80",
-                        action: "依照「由右至左」的順序，逐一參拜後殿的文昌帝君、關聖帝君、天上聖母、註生娘娘等神明。",
-                        dialogue: "「弟子（信女）OOO，在此向各位神明請安，祈求保佑我事業、健康、人生順利。」",
-                        warning: "不要因為急著拜月老就忽略或快速略過後殿神明，維持誠心與禮貌是第一步。",
+                        type: "【後殿】禮敬諸神明",
+                        deity: "後殿 ╳ 媽祖/關帝/文昌眾神",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/7/71/%E5%8F%B0%E5%8C%97%E5%B8%82%E8%89%8B%E8%88%BA%E9%BE%8D%E5%B1%B1%E5%AF%BA.jpg",
+                        action: "依序由右至左參拜後殿的天上聖母、關聖帝君、文昌帝君、註生娘娘等諸神明。",
+                        dialogue: "「弟子（信女）OOO，向後殿各位仙聖神尊問安。保佑弟子工作升遷、身體安泰、生活順利。」",
+                        warning: "必須依序拜完所有神明，絕對不可跳過任何一尊，以示尊重。",
                         mapRoom: "right偏殿"
                     },
                     {
                         number: "步驟 4",
-                        type: "【專祀】姻緣主掌",
-                        deity: "月老廳 · 月下老人",
-                        img: "https://images.unsplash.com/photo-1610123598147-f632aa18b275?auto=format&fit=crop&w=800&q=80",
-                        action: "來到後殿左側的月老廳，雙掌合十，清晰在心中向月老公稟告個人資訊與求緣條件。",
-                        dialogue: "「月老公公在上，弟子（信女）OOO，生辰OOO，現居OOO，感情狀況為OOO。理想對象的條件有：(1)... (2)...。若能覓得佳偶，必定攜帶喜餅前來答謝。」",
-                        warning: "不要拿寫滿條件的小抄或一邊滑手機一邊唸，專心將理想條件在腦海中勾勒呈現即可。",
+                        type: "【專祀】月老求緣",
+                        deity: "月老廳 ╳ 月下老人",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/7/71/%E5%8F%B0%E5%8C%97%E5%B8%82%E8%89%8B%E8%88%BA%E9%BE%8D%E5%B1%B1%E5%AF%BA.jpg",
+                        action: "前往後殿左側月老廳前，雙掌合十，向月老詳細稟告個人資料、現狀以及理想對象特質。",
+                        dialogue: "「月老公公在上，弟子（信女）OOO，生日OOO，住址OOO。希望遇到的對象條件為：（詳細陳述對象條件）。若未來姻緣成就，必定帶喜餅、喜糖回來答謝。」",
+                        warning: "切忌當場拿出密密麻麻的小抄或一邊看手機滑條件一邊唸。出發前將條件內化於心即可。",
                         mapRoom: "後殿"
                     },
                     {
                         number: "步驟 5",
-                        type: "【擲筊】正緣考驗",
-                        deity: "月老廳 · 筊杯請示",
-                        img: "https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?auto=format&fit=crop&w=800&q=80",
-                        action: "雙手捧起一對筊，向月老請示是否可以求取姻緣線。**必須連續擲出三個聖筊**（一正一反）方可拿取紅線。",
-                        dialogue: "「月老公公，請問弟子（信女）今天是否可以求取一條姻緣線？如果可以，請賜予弟子連續三個聖筊。」",
-                        warning: "⚠️ 禁忌：若擲出陰筊（兩凸面朝上）或笑筊（兩平面朝上），代表時候未到，此時萬萬不可強行拿走紅線，否則恐招致爛桃花！",
+                        type: "【擲筊】三筊定情緣",
+                        deity: "月老廳 ╳ 筊杯請示",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/7/71/%E5%8F%B0%E5%8C%97%E5%B8%82%E8%89%8B%E8%88%BA%E9%BE%8D%E5%B1%B1%E5%AF%BA.jpg",
+                        action: "取一對筊，合掌祈求月老公公應允。<strong>必須連續獲得「三個聖筊」</strong>（一正一反），方可領取紅線。",
+                        dialogue: "「月老公公，弟子（信女）誠心祈求您賜予一條紅線（姻緣線）。若您同意弟子帶回，請賜弟子連續三個聖筊。」",
+                        warning: "⚠️ 禁忌：若擲出陰筊或笑筊，代表緣分或時候未到，此時萬萬不可強行拿走紅線，否則恐招來孽緣爛桃花！",
                         mapRoom: "後殿"
                     },
                     {
                         number: "步驟 6",
-                        type: "【過爐】神力加持",
-                        deity: "正殿 · 觀音主爐過火",
-                        img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80",
-                        action: "求得紅線後，步行至**正殿觀音爐前**（注意並非月老廳前），將紅線平舉，在香爐上方「順時針旋轉三圈」過爐。隨後收進皮夾。",
-                        dialogue: "「請觀音菩薩與月老公公保佑此紅線，讓弟子（信女）的正緣早日牽成。」",
-                        warning: "再次提醒，過爐香爐是「正殿觀音爐」！過爐後請將紅線妥善收好，不要戴在手上。",
+                        type: "【過爐】觀音主爐加持",
+                        deity: "正殿 ╳ 觀音爐過火",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/c/c8/%E8%89%8B%E8%88%BA%E9%BE%8D%E5%B1%B1%E5%AF%BA-%E9%9B%B2%E9%BE%8D%E5%BE%A1%E8%B7%AF.jpg",
+                        action: "取得免費紅線後，步行至**正殿觀音主爐前**，將紅線平舉，在香爐上方「順時針繞三圈過爐」，隨後收進皮夾。",
+                        dialogue: "「請菩薩與月老公公加持紅線，引領我的感情正緣早日牽線成功。」",
+                        warning: "過爐的爐是「正殿觀音爐」而非後殿月老爐，此為最多人弄錯的地方！",
                         mapRoom: "正殿"
                     }
                 ]
             },
             cihui: {
                 title: "板橋慈惠宮",
-                sceneImg: "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=800&q=80",
-                address: "📍 新北市板橋區府中路81號 | 📞 電話：(02) 2965-0012 | 營業時間：05:00 ~ 22:00",
-                desc: "板橋歷史最悠久的媽祖廟，其月老公奉祀於一樓後殿。新北市政府民政局貼心提醒，此廟求取姻緣首重「雙數供品」與特色「姻緣袋」。",
-                ruleTag: "🌟 規矩特色：準備雙數供品 · 一個聖筊即可",
-                steps: [
-                    {
-                        number: "步驟 1",
-                        type: "【前置準備】成雙成對",
-                        deity: "一樓大廳 · 備辦供品",
-                        img: "https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=800&q=80",
-                        action: "準備金紙與雙數的甜食供品（如冰糖、帶殼龍眼乾等），擺放在月老殿供桌上。",
-                        dialogue: "「弟子（信女）OOO，今日備辦雙數供品前來祭拜天上聖母與月老公公。」",
-                        warning: "供品數量必須是雙數（如2、4、6樣），象徵成雙成對，切忌單數！",
+                sceneImg: "https://upload.wikimedia.org/wikipedia/commons/a/ab/%E6%9D%BF%E6%A9%8B%E6%85%88%E6%83%A0%E5%AE%AE%E4%B8%80%E6%99%AF.jpg",
+                address: "📍 新北市板橋區府中路81號 | 🕒 營業時間：05:00 ~ 22:00",
+                desc: "屬於板橋地區最早之媽祖廟，月下老人供奉於一樓後殿。信眾需備妥雙數供品，並在擲得一個聖筊後，抽取或購買「姻緣袋（線）」隨身攜帶。",
+                ruleTag: "🌟 規矩特色：備置雙數供品 · 一聖筊請取姻緣袋",
+                steps:。",
+                        dialogue: "（雙手捧好金紙、雙數冰糖與帶殼龍眼乾，心中保持誠敬。）",
+                        warning: "供品萬萬不可為單數，否則在民俗中有孤單的隱喻。",
                         mapRoom: "天公爐"
                     },
                     {
                         number: "步驟 2",
-                        type: "【主祀】天上聖母",
-                        deity: "正殿 · 媽祖娘娘",
-                        img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80",
-                        action: "先向正殿天上聖母（媽祖）等眾神明參拜並說明來意。",
-                        dialogue: "「媽祖娘娘在上，弟子（信女）OOO，今日前來拜拜，祈求闔家平安，並向後殿月老祈求姻緣。」",
-                        warning: "依循廟宇規矩，必須先向主神致意，隨後才能參拜配祀神明。",
+                        type: "【主祀】媽祖娘娘",
+                        deity: "一樓正殿 ╳ 天上聖母",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/a/ab/%E6%9D%BF%E6%A9%8B%E6%85%88%E6%83%A0%E5%AE%AE%E4%B8%80%E6%99%AF.jpg",
+                        action: "點香九柱。先於大門口拜天公，隨後進入一樓正殿參拜主神天上聖母（媽祖）說明來意。",
+                        dialogue: "「天上聖母在上，弟子（信女）OOO，生日OOO，今日前來慈惠宮參拜，並欲前往後殿拜求月老姻緣，請媽祖娘娘保佑事事順遂。」",
+                        warning: "媽祖殿兩側可拜文武財神，參拜完全殿神明方能禮敬後殿月老。",
                         mapRoom: "正殿"
                     },
                     {
                         number: "步驟 3",
-                        type: "【專祀】姻緣牽線",
-                        deity: "一樓後殿 · 月下老人",
-                        img: "https://images.unsplash.com/photo-1610123598147-f632aa18b275?auto=format&fit=crop&w=800&q=80",
-                        action: "至一樓後殿月老神尊前跪拜，虔心稟告姓名、生辰、詳細居住地址及理想伴侶條件。",
-                        dialogue: "「月老公公在上，弟子（信女）OOO，生日OOO，現居OOO。懇求月老公公賜予弟子好對象...」",
-                        warning: "生辰若不清楚詳細時辰，可以以「吉時」表示。",
+                        type: "【專祀】月老求緣",
+                        deity: "一樓後殿 ╳ 月下老人",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/a/ab/%E6%9D%BF%E6%A9%8B%E6%85%88%E6%83%A0%E5%AE%AE%E4%B8%80%E6%99%AF.jpg",
+                        action: "將供品置於月老公供桌。至月老神尊前虔誠長跪，默念姓名、住址、農曆生辰以及具體祈求內容。",
+                        dialogue: "「月老公公在上，弟子（信女）OOO，生於農曆OO年OO月OO日，現居OOO。希望求得理想對象：(1)有正當職業...(2)孝順顧家...。若順利牽成，必定前來答謝。」",
+                        warning: "誠心最重，向月老詳細交代理想伴侶特質，但切忌好高騖遠。",
                         mapRoom: "後殿"
                     },
                     {
                         number: "步驟 4",
-                        type: "【祈願】聖筊求紅線",
-                        deity: "一樓後殿 · 筊杯請示",
-                        img: "https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?auto=format&fit=crop&w=800&q=80",
-                        action: "向月老公擲筊。**擲得一個聖筊**之後，即可於案桌上拿取「姻緣線」或前往服務台購領「姻緣袋」。",
-                        dialogue: "「月老公公，若您同意賜予弟子姻緣袋，請賜一個聖筊。」",
-                        warning: "在板橋慈惠宮求取姻緣，擲得一個聖筊應允即可。",
+                        type: "【祈願】聖筊請領",
+                        deity: "一樓後殿 ╳ 筊杯請示",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/a/ab/%E6%9D%BF%E6%A9%8B%E6%85%88%E6%83%A0%E5%AE%AE%E4%B8%80%E6%99%AF.jpg",
+                        action: "合掌請示，<strong>擲得「一個聖筊」後</strong>，即可於案桌上抽取「姻緣線」或購買「姻緣袋」隨身攜帶。",
+                        dialogue: "「月老公公，請問您今天是否同意弟子抽取一條姻緣線？若您同意，請賜弟子一個聖筊。」",
+                        warning: "若擲出陰筊或笑筊，請跟神明告退，擇日再來，勿強行拿走。",
                         mapRoom: "後殿"
                     },
                     {
                         number: "步驟 5",
                         type: "【過爐】香火加持",
-                        deity: "月老香爐 · 順時針過火",
-                        img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80",
-                        action: "將姻緣袋（線）拿到香爐上，以**順時針方向過火繞三圈**。",
-                        dialogue: "「請月老公公加持此姻緣線，保佑姻緣早成。」",
-                        warning: "新北市政府民政局貼心提醒，一條紅線只可以於一間寺廟過爐，請勿多處重複過爐！",
+                        deity: "月老香爐 ╳ 順時針過爐",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/a/ab/%E6%9D%BF%E6%A9%8B%E6%85%88%E6%83%A0%E5%AE%AE%E4%B8%80%E6%99%AF.jpg",
+                        action: "將姻緣袋（線）拿至月老香爐上方，以「順時針方向過火繞三圈」完成加持。",
+                        dialogue: "「請月老公公加持弟子此姻緣線，保佑正緣牽引成功、幸福美滿。」",
+                        warning: "新北市政府民政局提醒：一條紅線限於一間寺廟過爐，請勿在多間廟重複過爐以防磁場混亂！",
                         mapRoom: "後殿"
                     },
                     {
                         number: "步驟 6",
                         type: "【安置】夜置枕下",
-                        deity: "自家臥室 · 枕下安置",
-                        img: "https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&w=800&q=80",
-                        action: "回家後將姻緣線隨身攜帶，亦可放在枕頭下。祭祀後的冰糖與龍眼乾需帶回煮水喝完。",
-                        dialogue: "不需要特別唸誦，保持感恩、喜悅的心即可。",
-                        warning: "若將姻緣線放枕頭下，請將**一端姻緣線頭留置在外**，以利月老順利牽線。",
+                        deity: "自家臥室 ╳ 姻緣契合",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/a/ab/%E6%9D%BF%E6%A9%8B%E6%85%88%E6%83%A0%E5%AE%AE%E4%B8%80%E6%99%AF.jpg",
+                        action: "帶回的姻緣線可放皮夾，或夜間放在枕頭下。供品之冰糖、龍眼乾需帶回煮水喝完以求圓滿。",
+                        dialogue: "（不需特別念誦。保持輕鬆感恩、期待緣分的心態即可。）",
+                        warning: "紅線放置於枕頭下時，請將<strong>「一端線頭留置在外」</strong>，民俗上這象徵月老方便順著線頭幫你牽引緣分。",
                         mapRoom: "後殿"
                     }
                 ]
             },
             hunglodei: {
-                title: "中和烘爐地福德宮",
-                sceneImg: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80",
-                address: "📍 新北市中和區興南路二段399巷160-1号 | 📞 開放時間：24小時開放",
-                desc: "烘爐地是著名的求財與夜景勝地，近十幾年興建的「財神殿」內供奉了月下老人。這裡非常適合想要「愛情與麵包兼顧」的現代信眾，在參拜月老求得緣分的同時，還能過財神橋、求取招財錢母。",
-                ruleTag: "🌟 規矩特色：求緣亦求財 · 月老好神衣與福袋",
-                steps: [
-                    {
-                        number: "步驟 1",
-                        type: "【前置準備】備辦供禮",
-                        deity: "財神殿 · 供品擺放",
-                        img: "https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=800&q=80",
-                        action: "進入財神殿後，備妥雙數供品（土地公與財神喜愛甜食），購買五支香並完全點燃。",
-                        dialogue: "「弟子（信女）OOO，今日準備甜食供品前來向五路財神與月老公公請安。」",
-                        warning: "財神殿參拜共需點燃五支香。如有買祈願蠟燭，可於點香前在燭台點燃。",
+                title: "中和烘爐地南山福德宮",
+                sceneImg: "https://upload.wikimedia.org/wikipedia/commons/5/50/%E4%B8%AD%E5%92%8C%E7%83%98%E7%88%90%E5%9C%B0%E5%9C%9F%E5%9C%B0%E5%85%AC%E5%83%8F.jpg",
+                address: "📍 新北市中和區興南路二段399巷160-1號 | 🕒 營業時間：24小時開放",
+                desc: "月下老人供奉於近十幾年興建之「財神殿」內，強調「愛情與麵包雙管齊下」。信眾於完成財神殿參拜順序後，向月老求得一個聖筊，可至服務台請購紅線過爐。",
+                ruleTag: "🌟 規矩特色：求財求姻緣雙軌 · 獨家好神衣與福袋",
+                steps:。至點香處點燃五支香。",
+                        dialogue: "（準備好香火與甜食，心中帶著求取幸福與財富的誠敬心靈。）",
+                        warning: "進入財神殿參拜共需要點五支香，參拜中不要用嘴去吹香火，以手揮熄即可。",
                         mapRoom: "天公爐"
                     },
                     {
                         number: "步驟 2",
-                        type: "【天公】天公爐",
-                        deity: "財神殿外 · 天公爐",
-                        img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80",
-                        action: "走到天公爐，面向天空，朝拜玉皇上帝，插第一支香。",
-                        dialogue: "「天公祖在上，弟子（信女）OOO，生日OOO，現居OOO。今日前來參拜財神殿眾神，祈求一切平安。」",
-                        warning: "天公爐只需插香一支，其餘香火繼續帶入殿內。",
+                        type: "【天公】天公爐敬天",
+                        deity: "財神殿外 ╳ 天公爐",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/5/50/%E4%B8%AD%E5%92%8C%E7%83%98%E7%88%90%E5%9C%B0%E5%9C%9F%E5%9C%B0%E5%85%AC%E5%83%8F.jpg",
+                        action: "至殿外「天公爐」前敬拜玉皇上帝，自我介紹並請安，插第一支香。",
+                        dialogue: "「天公祖在上，弟子（信女）OOO，生日OOO，住址OOO。今日恭敬前來參拜烘爐地眾神，保佑弟子一切平安。」",
+                        warning: "敬拜天公後，香火不可直接在此全部插上，只需插香一柱，其餘四香帶回。",
                         mapRoom: "天公爐"
                     },
                     {
                         number: "步驟 3",
-                        type: "【主祀】五路財神 & 土地公",
-                        deity: "正殿 · 五路財神 & 福德正神",
-                        img: "https://images.unsplash.com/photo-1610123598147-f632aa18b275?auto=format&fit=crop&w=800&q=80",
-                        action: "朝拜正殿五路財神與福德正神，祈求財源廣進，插第二支香。",
-                        dialogue: "「五路財神爺、土地公爺爺在上，弟子（信女）OOO，祈求保佑弟子工作順利、財源廣進。」",
-                        warning: "愛情與麵包同樣重要，有強大的麵包做後盾感情更穩固。",
+                        type: "【主祀】土地公 & 財神爺",
+                        deity: "正殿 ╳ 五路財神 & 土地公",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/5/50/%E4%B8%AD%E5%92%8C%E7%83%98%E7%88%90%E5%9C%B0%E5%9C%9F%E5%9C%B0%E5%85%AC%E5%83%8F.jpg",
+                        action: "朝拜福德正神與五路財神，祈求工作升遷、財源廣進、生活富足，插第二支香。",
+                        dialogue: "「土地公公、五路財神爺在上，弟子（信女）OOO，求您加持弟子工作順利、財氣亨通，讓弟子有穩固的麵包追求美好愛情。」",
+                        warning: "愛情與麵包同樣重要。有富足的麵包，感情之路會更加和諧安泰。",
                         mapRoom: "正殿"
                     },
                     {
                         number: "步驟 4",
                         type: "【配祀】文昌帝君",
-                        deity: "偏殿 · 文昌帝君",
-                        img: "https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&w=800&q=80",
-                        action: "祭拜文昌帝君（可於名片箱投遞名片），插第三支香。",
-                        dialogue: "「文昌帝君在上，保佑弟子事業高升，智慧增長。」",
-                        warning: "投遞名片時請保持整潔，切勿亂投。",
+                        deity: "文昌殿 ╳ 文昌帝君",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/5/50/%E4%B8%AD%E5%92%8C%E7%83%98%E7%88%90%E5%9C%B0%E5%9C%9F%E5%9C%B0%E5%85%AC%E5%83%8F.jpg",
+                        action: "參拜文昌帝君（考生可投准考證影本，上班或從商者可投名片），插第三支香。",
+                        dialogue: "「文昌帝君在上，保佑弟子考試、公職順利，智慧大開、事業步步高升。」",
+                        warning: "若要投遞名片或准考證，請在投入前誠心向帝君雙手合掌行禮。",
                         mapRoom: "right偏殿"
                     },
                     {
                         number: "步驟 5",
-                        type: "【專祀】月老公公",
-                        deity: "偏殿 · 月下老人",
-                        img: "https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?auto=format&fit=crop&w=800&q=80",
-                        action: "前往月老公公前，詳細稟報個資與感情對象特質，插第四支香。",
-                        dialogue: "「月老公公在上，弟子（信女）OOO，生日OOO，現居OOO。希望求得正緣桃花，對象條件為...」",
-                        warning: "向月老公求筊，**獲得一個聖筊應允後**，可至服務台請購紅線福袋與特製「好神衣」。",
+                        type: "【專祀】月老求緣",
+                        deity: "月老廳 ╳ 月下老人",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/5/50/%E4%B8%AD%E5%92%8C%E7%83%98%E7%88%90%E5%9C%B0%E5%9C%9F%E5%9C%B0%E5%85%AC%E5%83%8F.jpg",
+                        action: "向月老公公稟告個資，詳細描述心中理想桃花條件。插第四支香。擲筊獲得一個聖筊後，至櫃台請購紅線與好神衣。",
+                        dialogue: "「月老公公在上，弟子（信女）OOO，生日OOO，住址OOO。希望求得好緣分，對象條件為...」",
+                        warning: "烘爐地月老公公十分和藹，若要帶走福袋紅線，必須獲得「一個聖筊」的同意。",
                         mapRoom: "left偏殿"
                     },
                     {
                         number: "步驟 6",
-                        type: "【過橋】消災過神橋",
-                        deity: "財神殿 · 天官五路財神橋",
-                        img: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80",
-                        action: "前往財神橋前參拜玄壇真君，領取招財紅包袋與平安符，隨喜香油錢。隨後迅速走過財神橋，並在出口敲鐘一次，插最後一支香。",
-                        dialogue: "「弟子（信女）OOO，在此過橋祈求消災解厄，好運、財運、緣分接連到來。」",
-                        warning: "過橋要快速走過，敲鐘只需敲一次，預意迎福納財。",
+                        type: "【過橋】五路財神神橋",
+                        deity: "財神殿 ╳ 天官五路財神橋",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/5/50/%E4%B8%AD%E5%92%8C%E7%83%98%E7%88%90%E5%9C%B0%E5%9C%9F%E5%9C%B0%E5%85%AC%E5%83%8F.jpg",
+                        action: "至橋前拜玄壇真君，領招財袋與平安符，隨喜。迅速過橋消災解厄，於迎福門敲鐘一次迎財納福。插最後一支香。",
+                        dialogue: "「弟子（信女）OOO，今日走過財神橋，求真君保佑我消災除厄、福慧廣進。」",
+                        warning: "過橋時需穩健快速走過，鐘敲一聲即可，不要重複敲。",
                         mapRoom: "後殿"
                     },
                     {
                         number: "步驟 7",
-                        type: "【過爐】聚寶盆換錢母",
-                        deity: "財神殿 · 聚寶盆 & 香爐",
-                        img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80",
-                        action: "摸一下元寶，至聚寶盆「大錢換小錢」拿取母錢。將母錢、紅線與好神衣一同在香爐上**順時針繞三圈過爐**。",
-                        dialogue: "「請神明保佑財氣與姻緣雙管齊下，招財進寶、感情圓滿。」",
-                        warning: "過爐後的開運母錢與月老紅線，請一同放進紅包袋中收進錢包妥善保存。",
+                        type: "【過爐】聚寶盆求母錢",
+                        deity: "財神殿 ╳ 聚寶盆",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/5/50/%E4%B8%AD%E5%92%8C%E7%83%98%E7%88%90%E5%9C%B0%E5%9C%9F%E5%9C%B0%E5%85%AC%E5%83%8F.jpg",
+                        action: "摸元寶，至聚寶盆「大錢換小錢」拿取母錢。將紅線、好神衣與母錢在香爐上方「順時針過爐繞三圈」隨身保存。",
+                        dialogue: "「土地公與月老公公加持，保佑弟子財富與情緣雙管齊下，幸福滿盈。」",
+                        warning: "母錢與紅線求回後，請放入招財紅包袋內，收納在錢包或貼身之處，切勿亂丟。",
                         mapRoom: "後殿"
                     }
                 ]
             },
             yonglian: {
                 title: "蘆洲湧蓮寺",
-                sceneImg: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80",
-                address: "📍 新北市蘆洲區得勝街150號 | 捷運三民高中站步行10分鐘 | 營業時間：07:00 ~ 21:30",
-                desc: "主祀觀音佛祖，廟內的註生娘娘及月老公皆在地方上極富盛名。求紅線同樣講求心誠，需備妥兩份金紙，在月老公公面前連續擲出三個聖筊才能順利帶走紅線，亦可在此點一盞「姻緣燈」。",
-                ruleTag: "🌟 規矩特色：兩份金紙 · 連續三個聖筊",
-                steps: [
-                    {
-                        number: "步驟 1",
-                        type: "【前置準備】備辦供禮",
-                        deity: "龍門入口 · 供品擺放",
-                        img: "https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=800&q=80",
-                        action: "由右手側「龍門」進廟。準備糖果、水果等素雅供品及**兩份金紙**（一份拜主神觀音，一份拜月老）。點五支香。",
-                        dialogue: "「弟子（信女）OOO，今日前來拜求觀音佛祖與後殿月老公公。」",
-                        warning: "金紙必須準備兩份，一份祀奉主神觀世音菩薩，一份專門奉祀月老公公。",
+                sceneImg: "https://upload.wikimedia.org/wikipedia/commons/b/b3/%E8%98%86%E6%B4%B2%E6%B9%A7%E8%93%AE%E5%AF%BA.JPG",
+                address: "📍 新北市蘆洲區得勝街150號 | 🕒 營業時間：07:00 ~ 21:30",
+                desc: "主祀觀音佛祖，月老星君奉祀於後殿。求取紅線需向月老請示並連續擲出三次聖筊方可帶走。亦可在此登記點設「姻緣燈」。",
+                ruleTag: "🌟 規矩特色：兩份金紙敬神 · 連續三聖筊求姻緣袋",
+                steps:。<strong>購買兩份金紙</strong>（一份奉觀音菩薩，一份奉月老公公）。",
+                        dialogue: "（誠心整理兩份金紙與喜慶甜食，心中保持澄靜。）",
+                        warning: "湧蓮寺規矩需準備兩份金紙，一份不可敬拜兩神，否則有失禮俗。",
                         mapRoom: "天公爐"
                     },
                     {
                         number: "步驟 2",
-                        type: "【主祀】觀世音菩薩",
-                        deity: "正殿 · 觀世音菩薩",
-                        img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80",
-                        action: "先向天公爐三拜插香，再拜正殿主祀觀世音菩薩及眾神明致敬，插第二支香。",
-                        dialogue: "「觀音佛祖在上，弟子（信女）OOO，今日前來向您請安，求賜闔家平安、萬事順遂。」",
-                        warning: "務必先向主祀觀世音菩薩致敬禮拜後，才能前往後殿拜月老，以示對神明的尊重。",
+                        type: "【主祀】觀音佛祖",
+                        deity: "前殿正殿 ╳ 觀世音菩薩",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/b/b3/%E8%98%86%E6%B4%B2%E6%B9%A7%E8%93%AE%E5%AF%BA.JPG",
+                        action: "點五支香。先於前殿天公爐敬拜天公，隨後朝拜正殿觀音佛祖與眾神，插前二支香。",
+                        dialogue: "「觀音佛祖在上，弟子（信女）OOO，生日OOO，住址OOO。今日與家人虔敬參拜，保佑弟子一切平安順遂，感情光明。」",
+                        warning: "務必先敬拜前殿觀世音菩薩主神，才能前往後殿月老前，這是湧蓮寺的核心禮數。",
                         mapRoom: "正殿"
                     },
                     {
                         number: "步驟 3",
-                        type: "【後殿】禮敬諸神",
-                        deity: "後殿 · 延平郡王 & 註生娘娘",
-                        img: "https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&w=800&q=80",
-                        action: "移步至後殿，依序參拜延平郡王、天上聖母、註生娘娘等各神明，插第三支與第四支香。",
-                        dialogue: "「弟子（信女）OOO，向後殿各位神仙長輩問安，保佑一切平順吉祥。」",
-                        warning: "湧蓮寺後殿神明極其靈驗（特別是註生娘娘），逐一禮貌敬奉。",
+                        type: "【後殿】禮敬仙祖",
+                        deity: "後殿 ╳ 延平郡王 & 註生娘娘",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/a/ad/%E8%98%86%E6%B4%B2%E6%B9%A7%E8%93%AE%E5%AF%BA%E5%A4%A9%E7%8E%8B%E6%AE%BF_20251125.jpg",
+                        action: "移步至後殿，依序敬拜天上聖母、國姓爺、註生娘娘等各神明。插第三支與第四支香。",
+                        dialogue: "「後殿各位仙佛在上，保佑弟子做事有條理，身體健康、百毒不侵。」",
+                        warning: "後殿註生娘娘在湧蓮寺十分靈驗（求子、懷孕安產極著名），不可跳過不拜。",
                         mapRoom: "right偏殿"
                     },
                     {
                         number: "步驟 4",
                         type: "【專祀】月老求緣",
-                        deity: "後殿 · 月下老人",
-                        img: "https://images.unsplash.com/photo-1610123598147-f632aa18b275?auto=format&fit=crop&w=800&q=80",
-                        action: "前往後殿月下老人前，合掌長跪。詳細稟告個人資訊與感情現狀，並清晰唸出理想條件。",
-                        dialogue: "「月老公公在上，弟子（信女）OOO，生日OOO，現居OOO。保佑弟子能早日遇見理想對象...」",
-                        warning: "心中專注想著理想伴侶形象，真誠稟報。",
+                        deity: "後殿左側 ╳ 月老星君",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/a/ad/%E8%98%86%E6%B4%B2%E6%B9%A7%E8%93%AE%E5%AF%BA%E5%A4%A9%E7%8E%8B%E6%AE%BF_20251125.jpg",
+                        action: "前往月老星君神尊前，長跪，稟告個人基本個資與喜歡伴侶的條件。",
+                        dialogue: "「月老公公在上，弟子（信女）OOO，農曆生辰OOO，現居OOO。希望求得正緣，理想條件是...」",
+                        warning: "說出理想條件時口氣應平和恭敬，在腦海中呈現詳細伴侶的形象。",
                         mapRoom: "後殿"
                     },
                     {
                         number: "步驟 5",
-                        type: "【擲筊】連續三聖筊",
-                        deity: "後殿 · 筊杯請示",
-                        img: "https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?auto=format&fit=crop&w=800&q=80",
-                        action: "向月老公請示求取紅線，**必須連續擲出三個聖筊**方可拿取免費紅線。插上最後一支香。",
-                        dialogue: "「月老公公，若您同意弟子帶回姻緣紅線，請賜予弟子連續三個聖筊。」",
-                        warning: "若遲遲無法得到連續三個聖筊，代表緣分未到或條件說得不夠清楚，不宜強求強拿紅線。",
+                        type: "【擲筊】三筊定情緣",
+                        deity: "後殿左側 ╳ 筊杯請示",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/a/ad/%E8%98%86%E6%B4%B2%E6%B9%A7%E8%93%AE%E5%AF%BA%E5%A4%A9%E7%8E%8B%E6%AE%BF_20251125.jpg",
+                        action: "取一對筊，向月老請示求取紅線袋。<strong>必須連續擲出三個「聖筊」</strong>。插上最後一支香。",
+                        dialogue: "「月老公公，若您同意弟子帶回姻緣紅線（袋），請賜弟子連續三個聖筊。」",
+                        warning: "若遲遲無法連續得到三個聖筊，代表時候或緣分未到，不宜強求紅線強拿。",
                         mapRoom: "後殿"
                     },
                     {
                         number: "步驟 6",
-                        type: "【過爐】天公爐加持",
-                        deity: "天公爐 · 順時針過爐",
-                        img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80",
-                        action: "獲得紅線後，至天公爐以**順時針方向過爐繞三圈**隨身攜帶。亦可在服務櫃檯登記點設「姻緣燈」。",
-                        dialogue: "「請天公祖與月老公公保佑弟子姻緣早成、前途光明。」",
-                        warning: "求得的紅線同樣放入包包或枕頭下保存，避免隨便放在外面。",
+                        type: "【過爐】香爐加持與點燈",
+                        deity: "天公爐 ╳ 順時針過爐",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/b/b3/%E8%98%86%E6%B4%B2%E6%B9%A7%E8%93%AE%E5%AF%BA.JPG",
+                        action: "向廟方領取紅線與姻緣袋，至前殿香爐上方，以「順時針繞三圈過爐」隨身攜帶，亦可登記點姻緣燈。",
+                        dialogue: "「請天公祖與月老公公加持此姻緣袋，保佑弟子正桃花早日降臨。」",
+                        warning: "求得的姻緣袋可以吊掛於皮包上當作精美吊飾隨身攜帶，極具美感。",
                         mapRoom: "天公爐"
                     }
                 ]
@@ -694,7 +700,7 @@
             bubbleContainer.innerHTML = '';
             data.steps.forEach((step, idx) => {
                 const bubble = document.createElement('button');
-                const shortDeityName = step.deity.split(' · ') || step.deity;
+                const shortDeityName = step.deity.split(' ╳ ') || step.deity;
                 bubble.className = `px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-bold transition-all duration-300 border ${idx === 0? 'bg-rose-900 text-white border-transparent' : 'bg-stone-100 text-stone-600 border-stone-200 hover:bg-stone-200'}`;
                 bubble.innerText = `${step.number.replace('步驟 ', '步')}: ${shortDeityName}`;
                 bubble.onclick = () => selectStep(idx);
@@ -814,19 +820,19 @@
             var htmlContent = '';
 
             if (h) {
-                htmlContent += '<div class="bg-stone-850 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">📐 外形與身高條件評註：</span><span class="text-stone-300 font-medium block">「' + h + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>優越的外表、體面俐落的衣著往往需要投入不菲的金錢或精緻打扮時間。當我們渴望對方的外貌令人心動時，必須反思自己平日是否也撥出了相應的精力來建立自己的儀態、衣品與體味管理呢？高顏值對象同時亦可能承受較多的社交誘惑與他人青睞。</p></div>';
+                htmlContent += '<div class="bg-stone-800 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">📐 外形與身高條件評註：</span><span class="text-stone-300 font-medium block">「' + h + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>優越的外表、體面俐落的衣著往往需要投入不菲的金錢或精緻打扮時間。當我們渴望對方的外貌令人心動時，必須反思自己平日是否也撥出了相應的精力來建立自己的儀態、衣品與體味管理呢？高顏值對象同時亦可能承受較多的社交誘惑與他人青睞。</p></div>';
             }
 
             if (f) {
-                htmlContent += '<div class="bg-stone-850 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">💰 經濟與財務能力評註：</span><span class="text-stone-300 font-medium block">「' + f + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>高薪收入或年薪百萬，往往背後代表著漫長的工時、巨大的職業壓力和隨時待命的狀態。這代表他可能無法隨時在情人節或週末陪伴你，甚至會在約會中頻繁處理公務。如果你需要的是「陪伴」，那就必須謹慎思索追求物質和追求情感付出的平衡點。</p></div>';
+                htmlContent += '<div class="bg-stone-800 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">💰 經濟與財務能力評註：</span><span class="text-stone-300 font-medium block">「' + f + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>高薪收入或年薪百萬，往往背後代表著漫長的工時、巨大的職業壓力和隨時待命的狀態。這代表他可能無法隨時在情人節或週末陪伴你，甚至會在約會中頻繁處理公務。如果你需要的是「陪伴」，那就必須謹慎思索追求物質和追求情感付出的平衡點。</p></div>';
             }
 
             if (s) {
-                htmlContent += '<div class="bg-stone-850 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">🎭 個性與社交行為評註：</span><span class="text-stone-300 font-medium block">「' + s + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>對你大方、開朗、人見人愛的人，往往對身邊的所有人也展現相同的社交天賦與幽默感。你需要具備強大的內心和安全感，來包容其旺盛的社交需求。如果遇到問題不逃避、講理，自身也應當培養不情緒化、生氣時能好好訴說想法的對等溝通能力。</p></div>';
+                htmlContent += '<div class="bg-stone-800 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">🎭 個性與社交行為評註：</span><span class="text-stone-300 font-medium block">「' + s + '' + s + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>對你大方、開朗、人見人愛的人，往往對身邊的所有人也展現相同的社交天賦與幽默感。你需要具備強大的內心和安全感，來包容其旺盛的社交需求。如果遇到問題不逃避、講理，自身也應當培養不情緒化、生氣時能好好訴說想法的對等溝通能力。</p></div>';
             }
 
             if (ft) {
-                htmlContent += '<div class="bg-stone-850 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">💍 婚育共識與藍圖評註：</span><span class="text-stone-300 font-medium block">「' + ft + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>理想的生活習慣（不抽菸、不做媽寶、預計結婚）需要一個高度自律、對自己人生擁有自主權的人。這類伴侶在關係中通常對你的獨立和邊界要求也較高。當要求生活步調重疊時，要問自己是否做好了共同分擔家庭開銷或家務勞動的實際妥協準備。</p></div>';
+                htmlContent += '<div class="bg-stone-800 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">💍 婚育共識與藍圖評註：</span><span class="text-stone-300 font-medium block">「' + ft + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>理想的生活習慣（不抽菸、不做媽寶、預計結婚）需要一個高度自律、對自己人生擁有自主權的人。這類伴侶在關係中通常對你的獨立和邊界要求也較高。當要求生活步調重疊時，要問自己是否做好了共同分擔家庭開銷或家務勞動的實際妥協準備。</p></div>';
             }
 
             insightBox.innerHTML = htmlContent;
