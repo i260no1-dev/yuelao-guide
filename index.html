@@ -21,13 +21,13 @@
         }
     </script>
     <style>
-       .custom-scrollbar::-webkit-scrollbar {
+    .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
         }
-       .custom-scrollbar::-webkit-scrollbar-track {
+    .custom-scrollbar::-webkit-scrollbar-track {
             background: #FFF1F2;
         }
-       .custom-scrollbar::-webkit-scrollbar-thumb {
+    .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #F43F5E;
             border-radius: 3px;
         }
@@ -43,10 +43,10 @@
             </svg>
         </div>
         <div class="relative z-10 max-w-4xl mx-auto">
-            <span class="inline-block bg-warmGold/90 text-white font-semibold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-4 shadow">雙北地區 · 實操典籍 1.1 優化版</span>
+            <span class="inline-block bg-warmGold/90 text-white font-semibold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-4 shadow">雙北地區 · 實操典籍 4.1 終極版</span>
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">繫上紅線 · 尋覓正緣</h1>
             <p class="text-rose-100 text-sm md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
-                結合傳統民俗學儀軌與現代心理學「認知澄清」機制，為你量身打造的宮廟實操地圖與擇偶自我檢視工具。
+                結合傳統民俗學儀軌與現代心理學「認知澄清」機制，為你量身打造的宮廟實操指南與擇偶自我檢視工具。
             </p>
         </div>
     </header>
@@ -64,7 +64,7 @@
 
             <div class="flex flex-wrap justify-center gap-2 md:gap-3">
                 <button id="tab-xiahai" onclick="switchTemple('xiahai')" class="temple-tab px-4 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow bg-templeRed text-white">大稻埕霞海城隍廟</button>
-                <button id="tab-longshan" onclick="switchTemple('longshan')" class="temple-tab px-4 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow bg-white text-rose-950 hover:bg-rose-50 border border-stone-200">大量龍山寺</button>
+                <button id="tab-longshan" onclick="switchTemple('longshan')" class="temple-tab px-4 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow bg-white text-rose-950 hover:bg-rose-50 border border-stone-200">艋舺龍山寺</button>
                 <button id="tab-cihui" onclick="switchTemple('cihui')" class="temple-tab px-4 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow bg-white text-rose-950 hover:bg-rose-50 border border-stone-200">板橋慈惠宮</button>
                 <button id="tab-hunglodei" onclick="switchTemple('hunglodei')" class="temple-tab px-4 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow bg-white text-rose-950 hover:bg-rose-50 border border-stone-200">中和烘爐地福德宮</button>
                 <button id="tab-yonglian" onclick="switchTemple('yonglian')" class="temple-tab px-4 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow bg-white text-rose-950 hover:bg-rose-50 border border-stone-200">蘆洲湧蓮寺</button>
@@ -83,15 +83,6 @@
                                     📍 台北市大同區迪化街一段61號 (點我開啟 Google 地圖導航)
                                 </a>
                                 <p class="text-[11px] text-stone-500">📞 電話：(02) 2558-0346 | 🚇 交通：捷運雙連站2號出口轉乘518公車至南京西路口站，步行約3分鐘。</p>
-                            </div>
-
-                            <div class="relative w-full h-44 rounded-2xl overflow-hidden shadow-inner border border-stone-200 bg-gradient-to-tr from-rose-950 to-rose-900">
-                                <img src="https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=800&q=80" alt="大稻埕城隍廟實景" class="object-cover w-full h-full" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                <div class="hidden absolute inset-0 flex flex-col justify-center items-center text-center p-4">
-                                    <span class="text-4xl mb-2">⛩️</span>
-                                    <span class="text-amber-400 font-black text-lg tracking-widest">大稻埕霞海城隍廟</span>
-                                    <span class="text-rose-200 text-xs mt-1 font-light">網路載入中或已啟用精美古風備用界面</span>
-                                </div>
                             </div>
                         </div>
                         <div class="bg-rose-50 p-4 rounded-xl border border-rose-200/50 flex flex-col justify-center">
@@ -205,15 +196,6 @@
                                 </a>
                                 <p class="text-[11px] text-stone-500">🚇 交通：捷運龍山寺站1號出口，步行約3分鐘即可抵達。</p>
                             </div>
-
-                            <div class="relative w-full h-44 rounded-2xl overflow-hidden shadow-inner border border-stone-200 bg-gradient-to-tr from-rose-950 to-rose-900">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/%E5%8F%B0%E5%8C%97%E5%B8%82%E8%89%8B%E8%89%AF%E9%BE%8D%E5%B1%B1%E5%AF%BA.jpg/640px-%E5%8F%B0%E5%8C%97%E5%B8%82%E8%89%8B%E8%89%AF%E9%BE%8D%E5%B1%B1%E5%AF%BA.jpg" alt="艋舺龍山寺實景" class="object-cover w-full h-full" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                <div class="hidden absolute inset-0 flex flex-col justify-center items-center text-center p-4">
-                                    <span class="text-4xl mb-2">⛩️</span>
-                                    <span class="text-amber-400 font-black text-lg tracking-widest">艋舺龍山寺</span>
-                                    <span class="text-rose-200 text-xs mt-1 font-light">網路載入中或已啟用精美古風備用界面</span>
-                                </div>
-                            </div>
                         </div>
                         <div class="bg-rose-50 p-4 rounded-xl border border-rose-200/50 flex flex-col justify-center">
                             <span class="text-xs text-rose-700 font-semibold">🌟 特色規矩</span>
@@ -272,7 +254,7 @@
                                 <input type="checkbox" class="w-5 h-5 rounded text-templeRed mt-0.5 shrink-0">
                                 <span class="text-xs md:text-sm text-stone-700">
                                     <span class="bg-red-100 text-red-800 text-[10px] font-extrabold px-1.5 py-0.5 rounded mr-1">【過爐】</span>
-                                    <strong>步驟 7:</strong> 成功擲得三個聖筊後，免費取一條紅線，步行回<strong>正殿觀音爐前過火繞三圈</strong>，並由「虎門」離去。
+                                    <strong>步驟 7:</strong> 成功擲得三個聖筊後，免費取一條紅線，步行回<strong>正殿觀音爐前過火繞三圈過爐</strong>，並由「虎門」離去。
                                 </span>
                             </label>
                         </div>
@@ -290,15 +272,6 @@
                                     📍 新北市板橋區府中路81號 (點我開啟 Google 地圖導航)
                                 </a>
                                 <p class="text-[11px] text-stone-500">📞 電話：(02) 2965-0012 | 🚇 交通：捷運府中站，朝板橋林家花園方向步行約5分鐘。</p>
-                            </div>
-
-                            <div class="relative w-full h-44 rounded-2xl overflow-hidden shadow-inner border border-stone-200 bg-gradient-to-tr from-rose-950 to-rose-900">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/%E6%9D%BF%E6%A9%8B%E6%85%88%E6%83%A0%E5%AE%AE%E4%B8%80%E6%99%AF.jpg/640px-%E6%9D%BF%E6%A9%8B%E6%85%88%E6%83%A0%E5%AE%AE%E4%B8%80%E6%99%AF.jpg" alt="板橋慈惠宮實景" class="object-cover w-full h-full" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                <div class="hidden absolute inset-0 flex flex-col justify-center items-center text-center p-4">
-                                    <span class="text-4xl mb-2">⛩️</span>
-                                    <span class="text-amber-400 font-black text-lg tracking-widest">板橋慈惠宮</span>
-                                    <span class="text-rose-200 text-xs mt-1 font-light">網路載入中或已啟用精美古風備用界面</span>
-                                </div>
                             </div>
                         </div>
                         <div class="bg-rose-50 p-4 rounded-xl border border-rose-200/50 flex flex-col justify-center">
@@ -369,15 +342,6 @@
                                     📍 新北市中和區興南路二段399巷160-1號 (點我開啟 Google 地圖導航)
                                 </a>
                                 <p class="text-[11px] text-stone-500">🚇 交通：於捷運南勢角站4號出口，轉乘F512副線公車登山或轉乘計程車直達財神殿。</p>
-                            </div>
-
-                            <div class="relative w-full h-44 rounded-2xl overflow-hidden shadow-inner border border-stone-200 bg-gradient-to-tr from-rose-950 to-rose-900">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/%E4%B8%AD%E5%92%8C%E7%83%98%E7%88%90%E5%9C%B0%E5%9C%9F%E5%9C%B0%E5%85%AC%E5%83%8F.jpg/640px-%E4%B8%AD%E5%92%8C%E7%83%98%E7%88%90%E5%9C%B0%E5%9C%9F%E5%9C%B0%E5%85%AC%E5%83%8F.jpg" alt="中和烘爐地實景" class="object-cover w-full h-full" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                <div class="hidden absolute inset-0 flex flex-col justify-center items-center text-center p-4">
-                                    <span class="text-4xl mb-2">⛩️</span>
-                                    <span class="text-amber-400 font-black text-lg tracking-widest">烘爐地福德宮</span>
-                                    <span class="text-rose-200 text-xs mt-1 font-light">網路載入中或已啟用精美古風備用界面</span>
-                                </div>
                             </div>
                         </div>
                         <div class="bg-rose-50 p-4 rounded-xl border border-rose-200/50 flex flex-col justify-center">
@@ -461,16 +425,7 @@
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                     📍 新北市蘆洲區得勝街150號 (點我開啟 Google 地圖導航)
                                 </a>
-                                <p class="text-[11px] text-stone-500">🚇 交通：捷運三民高中站，步行約10分鐘。</p>
-                            </div>
-
-                            <div class="relative w-full h-44 rounded-2xl overflow-hidden shadow-inner border border-stone-200 bg-gradient-to-tr from-rose-950 to-rose-900">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/%E8%98%86%E6%B4%B2%E6%B9%A7%E8%93%AE%E5%AF%BA.JPG/640px-%E8%98%86%E6%B4%B2%E6%B9%A7%E8%93%AE%E5%AF%BA.JPG" alt="蘆洲湧蓮寺實景" class="object-cover w-full h-full" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                                <div class="hidden absolute inset-0 flex flex-col justify-center items-center text-center p-4">
-                                    <span class="text-4xl mb-2">⛩️</span>
-                                    <span class="text-amber-400 font-black text-lg tracking-widest">蘆洲湧蓮寺</span>
-                                    <span class="text-rose-200 text-xs mt-1 font-light">網路載入中或已啟用精美古風備用界面</span>
-                                </div>
+                                <p class="text-[11px] text-stone-500">🚇 交通：捷運三民高中站，步行約10分鐘即可抵達。</p>
                             </div>
                         </div>
                         <div class="bg-rose-50 p-4 rounded-xl border border-rose-200/50 flex flex-col justify-center">
@@ -533,44 +488,97 @@
             </div>
         </section>
 
-        <section class="bg- rounded-3xl shadow-xl border border-amber-100 p-6 md:p-10 space-y-8">
+        <section class="bg-white rounded-3xl shadow-xl border border-amber-100 p-6 md:p-10 space-y-8">
             <div class="text-center max-w-2xl mx-auto">
                 <h2 class="text-2xl md:text-3xl font-bold text-amber-950 flex items-center justify-center gap-2">
                     <svg class="w-8 h-8 text-warmGold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
-                    擇偶條件「數據化」自省產生器
+                    擇偶條件「數據化」自省天平
                 </h2>
                 <p class="text-gray-600 text-xs md:text-sm mt-2">
-                    在心理學中，寫下理想條件是一次「認知澄清」。但每項優點的背後往往有其「隱性因果代價」。請試著輸入你的理想條件，我們將為你剖析現實與自省代價！
+                    在心理學中，寫下理想條件是一次「認知澄清」。請勾選理想特質，系統將自動啟動「自省天平」深入剖析現實對等代價！
                 </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="space-y-6 bg-white p-6 rounded-2xl border border-stone-200 shadow-inner">
+                <div class="space-y-6 bg-[#FCF9F7] p-6 rounded-2xl border border-stone-200 shadow-inner">
                     <h3 class="font-bold text-stone-800 text-base border-b pb-3 flex items-center gap-2">
-                        <span class="w-1 h-4 bg-warmGold rounded-full"></span> 理想對象特質輸入板
+                        <span class="w-1 h-4 bg-warmGold rounded-full"></span> 理想對象特質選擇板
                     </h3>
                     
                     <div class="space-y-4">
-                        <div>
-                            <label class="block text-xs md:text-sm font-semibold text-stone-700 mb-1">外形身高條件：</label>
-                            <input id="input-height" type="text" class="w-full text-xs md:text-sm p-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="例如：身高175以上、單眼皮、不抽菸...">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs md:text-sm font-semibold text-stone-700 mb-1">您的性別（身分）：</label>
+                                <select id="user-gender" class="w-full text-xs md:text-sm p-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 bg-white">
+                                    <option value="">請選擇</option>
+                                    <option value="男性 (信士)">男性 (信士)</option>
+                                    <option value="女性 (信女)">女性 (信女)</option>
+                                    <option value="多元性別 (信眾)">多元性別 (信眾)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs md:text-sm font-semibold text-stone-700 mb-1">尋求對象性別：</label>
+                                <select id="target-gender" class="w-full text-xs md:text-sm p-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 bg-white">
+                                    <option value="">請選擇</option>
+                                    <option value="男性對象">男性</option>
+                                    <option value="女性對象">女性</option>
+                                    <option value="多元性別對象">多元性別對象</option>
+                                    <option value="有緣對象">不限/有緣即可</option>
+                                </select>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-xs md:text-sm font-semibold text-stone-700 mb-1">經濟財務條件：</label>
-                            <input id="input-finance" type="text" class="w-full text-xs md:text-sm p-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="例如：月薪50K以上、能主動儲蓄...">
-                        </div>
-                        <div>
-                            <label class="block text-xs md:text-sm font-semibold text-stone-700 mb-1">個性與社交特質：</label>
-                            <input id="input-social" type="text" class="w-full text-xs md:text-sm p-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="例如：溫和幽默、生氣時願意理性溝通...">
-                        </div>
-                        <div>
-                            <label class="block text-xs md:text-sm font-semibold text-stone-700 mb-1">未來生活與觀念共識：</label>
-                            <input id="input-future" type="text" class="w-full text-xs md:text-sm p-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="例如：1至3年內有結婚打算、能共同負擔家務...">
+
+                        <div class="space-y-2">
+                            <label class="block text-xs md:text-sm font-semibold text-stone-700">理想對象特質（可多選）：</label>
+                            <div class="grid grid-cols-1 gap-2 bg-white p-4 rounded-xl border border-stone-200">
+                                <label class="flex items-start gap-2.5 cursor-pointer text-xs md:text-sm text-stone-700">
+                                    <input type="checkbox" name="trait" value="經濟穩定" class="w-4 h-4 rounded text-rose-900 focus:ring-rose-500 mt-0.5 shrink-0">
+                                    <div>
+                                        <span class="font-bold">經濟穩定</span>
+                                        <span class="text-[10px] text-stone-500 ml-1">有穩定正職、具備儲蓄與理財習慣</span>
+                                    </div>
+                                </label>
+                                <label class="flex items-start gap-2.5 cursor-pointer text-xs md:text-sm text-stone-700">
+                                    <input type="checkbox" name="trait" value="情緒穩定" class="w-4 h-4 rounded text-rose-900 focus:ring-rose-500 mt-0.5 shrink-0">
+                                    <div>
+                                        <span class="font-bold">情緒穩定</span>
+                                        <span class="text-[10px] text-stone-500 ml-1">性格溫和、願意理性溝通、不冷暴力</span>
+                                    </div>
+                                </label>
+                                <label class="flex items-start gap-2.5 cursor-pointer text-xs md:text-sm text-stone-700">
+                                    <input type="checkbox" name="trait" value="外形體面" class="w-4 h-4 rounded text-rose-900 focus:ring-rose-500 mt-0.5 shrink-0">
+                                    <div>
+                                        <span class="font-bold">外形體面</span>
+                                        <span class="text-[10px] text-stone-500 ml-1">注重乾淨、身材勻稱、無刺鼻體味</span>
+                                    </div>
+                                </label>
+                                <label class="flex items-start gap-2.5 cursor-pointer text-xs md:text-sm text-stone-700">
+                                    <input type="checkbox" name="trait" value="生活健康" class="w-4 h-4 rounded text-rose-900 focus:ring-rose-500 mt-0.5 shrink-0">
+                                    <div>
+                                        <span class="font-bold">生活健康</span>
+                                        <span class="text-[10px] text-stone-500 ml-1">無不良嗜好（不抽菸、不酗酒、無不良賭博）</span>
+                                    </div>
+                                </label>
+                                <label class="flex items-start gap-2.5 cursor-pointer text-xs md:text-sm text-stone-700">
+                                    <input type="checkbox" name="trait" value="家庭單純" class="w-4 h-4 rounded text-rose-900 focus:ring-rose-500 mt-0.5 shrink-0">
+                                    <div>
+                                        <span class="font-bold">家庭單純</span>
+                                        <span class="text-[10px] text-stone-500 ml-1">原生家庭融洽、家人明理不干預伴侶生活</span>
+                                    </div>
+                                </label>
+                                <label class="flex items-start gap-2.5 cursor-pointer text-xs md:text-sm text-stone-700">
+                                    <input type="checkbox" name="trait" value="生涯共識" class="w-4 h-4 rounded text-rose-900 focus:ring-rose-500 mt-0.5 shrink-0">
+                                    <div>
+                                        <span class="font-bold">生涯共識</span>
+                                        <span class="text-[10px] text-stone-500 ml-1">1-3年內有成家打算、願意共同分擔家事</span>
+                                    </div>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
-                    <button onclick="generateInsight()" class="w-full py-3 bg-warmGold hover:bg-amber-600 text-white font-bold rounded-xl transition duration-300 shadow">
-                        生成「擇偶自省與代價」報告
+                    <button onclick="generateInsight()" class="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl transition duration-300 shadow">
+                        分析擇偶代價 (自省天平)
                     </button>
                 </div>
 
@@ -581,8 +589,8 @@
                             <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono">INTELLIGENT ANALYSIS</span>
                         </div>
                         
-                        <div id="insight-box" class="space-y-4 text-xs md:text-sm leading-relaxed custom-scrollbar max-h-72 overflow-y-auto pr-2">
-                            <p class="text-stone-400 italic">在左側輸入您對另一半的真實渴望，然後點擊按鈕，月老將為你提供一針見血的客觀現實反思與心流反饋。</p>
+                        <div id="insight-box" class="space-y-4 text-xs md:text-sm leading-relaxed custom-scrollbar max-h-[380px] overflow-y-auto pr-2">
+                            <p class="text-stone-400 italic">在左側選定您的性別組合、多選心儀特質，隨後點擊按鈕，這裡將自動為您開啟現實對等代價與心流反思。</p>
                         </div>
                     </div>
 
@@ -681,7 +689,7 @@
                     <ul class="text-xs md:text-sm text-stone-500 space-y-1 list-disc list-inside">
                         <li><strong>核心準備：</strong>攜帶一份正式的「訂婚喜餅、喜糖與喜帖」。</li>
                         <li>至辦事處登記，在廟內依照常規參拜順序向主神與神明致謝，並於月老前敬獻喜餅。</li>
-                        <li>完成參拜後，<strong>將喜餅與喜糖留在廟中</strong>，委託廟方在大殿或服務台與前來求緣的單身信徒分享，傳遞幸福。</li>
+                        <li>完成參拜後，**將喜餅與喜糖留在廟中**，委託廟方在大殿或服務台與前來求緣的單身信徒分享，傳遞幸福。</li>
                         <li>*若不辦婚禮或無喜餅，可以以精緻西點或甜食禮盒代之。</li>
                     </ul>
                 </div>
@@ -709,47 +717,78 @@
 
             // 恢復所有 Tab 按鈕為未選中狀態
             document.querySelectorAll('.temple-tab').forEach(function(btn) {
-                btn.classList.remove('bg-templeRed', 'text-white');
-                btn.classList.add('bg-white', 'text-rose-950', 'hover:bg-rose-50', 'border-stone-200');
+                btn.className = "temple-tab px-4 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow bg-white text-rose-950 hover:bg-rose-50 border border-stone-200";
             });
             // 設定當前點選的 Tab 為選中狀態
-            document.getElementById('tab-' + templeId).classList.remove('bg-white', 'text-rose-950', 'hover:bg-rose-50', 'border-stone-200');
-            document.getElementById('tab-' + templeId).classList.add('bg-templeRed', 'text-white');
+            document.getElementById('tab-' + templeId).className = "temple-tab px-4 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow bg-templeRed text-white";
         }
 
-        // 擇偶條件分析邏輯
+        // 擇偶條件分析邏輯 (多選 checkbox ╳ 性別元素支援)
         function generateInsight() {
-            var h = document.getElementById('input-height').value.trim();
-            var f = document.getElementById('input-finance').value.trim();
-            var s = document.getElementById('input-social').value.trim();
-            var ft = document.getElementById('input-future').value.trim();
-
+            var userGender = document.getElementById('user-gender').value;
+            var targetGender = document.getElementById('target-gender').value;
+            
+            var checkedBoxes = Array.from(document.querySelectorAll('input[name="trait"]:checked'));
+            var selectedTraits = checkedBoxes.map(function(el) { return el.value; });
+            
             var insightBox = document.getElementById('insight-box');
-            insightBox.innerHTML = ''; // 清空原有內容
+            insightBox.innerHTML = ''; 
 
-            if (!h &&!f &&!s &&!ft) {
-                insightBox.innerHTML = '<p class="text-rose-300 italic">請至少在左方一項條件中輸入內容，月老才能為你指點乾坤。</p>';
+            if (selectedTraits.length === 0) {
+                insightBox.innerHTML = '<p class="text-rose-300 italic text-xs">請至少在左側勾選一項特質，月老公公才能為您開啟自省天平。</p>';
                 return;
             }
 
-            var htmlContent = '';
-
-            if (h) {
-                htmlContent += '<div class="bg-stone-850 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">📐 外形與身高條件評註：</span><span class="text-stone-300 font-medium block">「' + h + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>優越的外表、體面俐落的衣著往往需要投入不菲的金錢或精緻打扮時間。當我們渴望對方的外貌令人心動時，必須反思自己平日是否也撥出了相應的精力來建立自己的儀態、衣品與體味管理呢？高顏值對象同時亦可能承受較多的社交誘惑與他人青睞。</p></div>';
+            var htmlContent = '<div class="space-y-4">';
+            
+            // 頂部性別對等引言
+            if (userGender && targetGender) {
+                htmlContent += '<div class="bg-stone-800 p-3 rounded-lg border border-stone-700 text-amber-300 text-xs font-semibold">';
+                htmlContent += '🎯 您身為【' + userGender + '】，正在尋求【' + targetGender + '】。一段健康的關係，建立於彼此邊界的尊重與對等的能量交換。';
+                htmlContent += '</div>';
             }
 
-            if (f) {
-                htmlContent += '<div class="bg-stone-850 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">💰 經濟與財務能力評註：</span><span class="text-stone-300 font-medium block">「' + f + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>高薪收入 or 年薪百萬，往往代表著漫長的工時與高壓的工作狀態。這意味著他可能無法隨時在情人節或週末陪伴你。如果你需要的是極度密集的伴侶陪伴，那就必須謹慎思索追求物質和追求情感付出的平衡點。</p></div>';
-            }
+            // 多選特質現實對等代價解析
+            selectedTraits.forEach(function(trait) {
+                if (trait === "經濟穩定") {
+                    htmlContent += '<div class="text-xs text-stone-300 bg-stone-850 p-3 rounded-lg border border-stone-700/40">';
+                    htmlContent += '<strong class="text-amber-300">💰 經濟穩定 ╳ 時間代價：</strong>';
+                    htmlContent += '<p class="mt-1 text-stone-400 leading-relaxed">追求高收入、有房有車或財務充裕的對象，往往代表著對方需要投入極長的工作時間、承擔高壓的職業責任，或隨時處於待命狀態。這意味著他可能無法隨時在週末或紀念日陪伴您，甚至在約會中頻繁處理公務。這是一次物質安全感與時間陪伴感的等價交換。</p>';
+                    htmlContent += '</div>';
+                }
+                if (trait === "情緒穩定") {
+                    htmlContent += '<div class="text-xs text-stone-300 bg-stone-850 p-3 rounded-lg border border-stone-700/40">';
+                    htmlContent += '<strong class="text-amber-300">🤝 情緒穩定 ╳ 情感共鳴：</strong>';
+                    htmlContent += '<p class="mt-1 text-stone-400 leading-relaxed">溫和理性、情緒穩定、不說氣話的人，在日常相處中通常也較為內斂或務實，不易產生高潮迭起的激情或戲劇性的浪漫舉動。若希望對方給予平穩健康的長久關係，自身也需要培養不情緒化、生氣時能好好溝通的對等能力。</p>';
+                    htmlContent += '</div>';
+                }
+                if (trait === "外形體面") {
+                    htmlContent += '<div class="text-xs text-stone-300 bg-stone-850 p-3 rounded-lg border border-stone-700/40">';
+                    htmlContent += '<strong class="text-amber-300">📐 外形體面 ╳ 打扮成本：</strong>';
+                    htmlContent += '<p class="mt-1 text-stone-400 leading-relaxed">出眾的外貌、得體的穿搭、勻稱的身材，背後是持續的時間與財務投入。若渴望對方的儀態令人賞心悅目，也需審視自己是否也投注對等的心力在個人精緻度與體態管理上。此外，外形優越的對象在社交圈中通常也伴隨著較多的潛在競爭者與誘惑。</p>';
+                    htmlContent += '</div>';
+                }
+                if (trait === "生活健康") {
+                    htmlContent += '<div class="text-xs text-stone-300 bg-stone-850 p-3 rounded-lg border border-stone-700/40">';
+                    htmlContent += '<strong class="text-amber-300">🚭 生活健康 ╳ 自律邊界：</strong>';
+                    htmlContent += '<p class="mt-1 text-stone-400 leading-relaxed">生活作息高度規律、熱愛運動且完全無不良嗜好（不抽菸、不酗酒、不賭博）的人，通常擁有極強的個人原則。這意味著對方對於彼此的生活習慣、家事分工與健康邊界可能有較高的自律要求。在期待對方自律的同時，您是否也準備好調整自己的生活習慣以求和諧？</p>';
+                    htmlContent += '</div>';
+                }
+                if (trait === "家庭單純") {
+                    htmlContent += '<div class="text-xs text-stone-300 bg-stone-850 p-3 rounded-lg border border-stone-700/40">';
+                    htmlContent += '<strong class="text-amber-300">🏡 家庭單純 ╳ 邊界建立：</strong>';
+                    htmlContent += '<p class="mt-1 text-stone-400 leading-relaxed">「家庭關係單純明理、長輩不干預」的前提，通常是對方有著清透的個人邊界，且原生家庭成員間不過度黏著或依賴。這類伴侶在婚後可能也會要求與雙方長輩保持一定的獨立空間與心理距離。您與您的原生家庭是否也做好了建立健康邊界的心理準備？</p>';
+                    htmlContent += '</div>';
+                }
+                if (trait === "生涯共識") {
+                    htmlContent += '<div class="text-xs text-stone-300 bg-stone-850 p-3 rounded-lg border border-stone-700/40">';
+                    htmlContent += '<strong class="text-amber-300">💍 生涯共識 ╳ 柴米油鹽：</strong>';
+                    htmlContent += '<p class="mt-1 text-stone-400 leading-relaxed">明確的成家與生育規劃，意味著雙方必須迅速褪去熱戀期的非理性浪漫，轉入極其務實的「生活合夥人」模式。這需要在繁瑣的家事分工、家庭財務管理、理財儲蓄與育兒共識中，做出極高度的妥協與實質付出。</p>';
+                    htmlContent += '</div>';
+                }
+            });
 
-            if (s) {
-                htmlContent += '<div class="bg-stone-850 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">🎭 個性與社交行為評註：</span><span class="text-stone-300 font-medium block">「' + s + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>極具社交魅力、開朗受歡迎的人，往往對所有人也展現相同的熱情。你需要具備強大的安全感與信任，來包容其社交生活。如果期望對方生氣時能理性講理，自身也應當對等培養不情緒化、生氣時能好好訴說想法的溝通能力。</p></div>';
-            }
-
-            if (ft) {
-                htmlContent += '<div class="bg-stone-850 p-4 rounded-lg border border-stone-700/60"><span class="text-amber-400 font-bold block mb-1">💍 婚育共識與藍圖評註：</span><span class="text-stone-300 font-medium block">「' + ft + '」</span><p class="text-stone-400 mt-2 text-xs leading-relaxed"><strong>隱性代價剖析：</strong>理想的生活共識（不抽菸、不作媽寶、預計結婚）需要一個高度自律、對自己人生擁有清晰自主權的人。這類伴侶在關係中通常對你的獨立和邊界要求也較高。在要求生活步調重疊時，要問自己是否做好了共同分擔家庭開銷或家務勞動的實際妥協準備。</p></div>';
-            }
-
+            htmlContent += '</div>';
             insightBox.innerHTML = htmlContent;
         }
     </script>
